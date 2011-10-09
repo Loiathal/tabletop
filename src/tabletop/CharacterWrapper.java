@@ -4,11 +4,15 @@
  * This class wraps around the core character, applying modifiers to scores from other abilities and equipment.
  */
 
-
 package tabletop;
+
+import java.util.List;
+import java.util.ArrayList;
 
 public class CharacterWrapper {
     private CoreCharacter character;
+    List<String> equipmentList = new ArrayList<String>();
+    
     
     public int modifiedAbilityScore(String abilityScore)
     {
@@ -30,5 +34,4 @@ public class CharacterWrapper {
                 return -1;
         }
     }
-    
 }
