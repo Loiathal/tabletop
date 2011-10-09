@@ -130,7 +130,7 @@ public class CoreCharacter {
         
     }
     void getwillsave(){
-        
+     //herp to my derp   
     }
     void setwillsave(){
         
