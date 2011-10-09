@@ -34,7 +34,7 @@ public class CoreCharacter {
             return null;
         }
     }
-    
+    //fucking hell
     public String getCharacterRace(String characterRace){
         if (characterRace.equalsIgnoreCase("race")){
             return race;
