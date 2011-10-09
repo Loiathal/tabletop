@@ -9,12 +9,12 @@ public class CoreCharacter {
     String size;
     int reach;
     String favoredclass;
-    int str;
-    int dex;
-    int con;
-    int wis;
-    int Int;
-    int cha;
+    private int Str;
+    private int Dex;
+    private int Con;
+    private int Wis;
+    private int Int;
+    private int Cha;
     int HP;
     int fortsave;
     int refsave;
@@ -75,46 +75,33 @@ public class CoreCharacter {
     void setfavoredclass(){
         
     }
-    void getstr(){
     
+    public int getAbilityScore(String abilityScore){
+         if (abilityScore.equalsIgnoreCase("str") || abilityScore.equalsIgnoreCase("strength")) {
+             return Str;
+         } else if (abilityScore.equalsIgnoreCase("dex") || abilityScore.equalsIgnoreCase("dexterity")) {
+             return Dex;
+         } else if (abilityScore.equalsIgnoreCase("con") || abilityScore.equalsIgnoreCase("constitution")) {
+             return Con;
+         } else if (abilityScore.equalsIgnoreCase("int") || abilityScore.equalsIgnoreCase("intelligence")) {
+             return Int;
+         } else if (abilityScore.equalsIgnoreCase("wis") || abilityScore.equalsIgnoreCase("wisdom")) {
+             return Wis;
+         } else if (abilityScore.equalsIgnoreCase("cha") || abilityScore.equalsIgnoreCase("charisma")) {
+             return Cha;
+         } else {
+             return -1;
+         }
     }
-    void setstr(){
-        
-    }
-    void getdex(){
-        
-    }
-    void setdex(){
-        
-    }
-    void getcon(){
-        
-    }
-    void setcon(){
-        
-    }
-    void getwis(){
-        
-    }
-    void setwis(){
-        
-    }
-    void getInt(){
-        
-    }
-    void setInt(){
-        
-    }
-    void getcha(){
-        
-    }
-    void setcha(){
-        
-    }
+    
     void getHP(){
         
     }
     void setHP(){
+        
+    }
+    
+    public int getSavingThrow(String savingThrow){
         
     }
     void getfortsave(){
@@ -130,7 +117,7 @@ public class CoreCharacter {
         
     }
     void getwillsave(){
-     //herp to my derp   
+ 
     }
     void setwillsave(){
         
