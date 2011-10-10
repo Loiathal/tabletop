@@ -35,5 +35,3 @@ public class CharacterWrapper {
         }
     }
 }
-
-//commiting fucking blows
