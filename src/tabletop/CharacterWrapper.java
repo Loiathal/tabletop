@@ -8,7 +8,7 @@ package tabletop;
 
 import java.util.List;
 import java.util.ArrayList;
-
+//hate everything
 public class CharacterWrapper {
     private CoreCharacter character;
     List<String> equipmentList = new ArrayList<String>();
