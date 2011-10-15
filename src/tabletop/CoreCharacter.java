@@ -1,5 +1,9 @@
 package tabletop;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+
 public class CoreCharacter {
     
     private String name;
@@ -23,8 +27,9 @@ public class CoreCharacter {
     private int characterweight;
     private int movespeed;
     private String notes;
+    private List languages;
     
-    // things Byran isn't sure how to code: skills, feats, items, spells, languages, status, companion, special
+    // things Byran isn't sure how to code: skills, feats, items, spells, status, companion, special
     // should weapon proficencies be considered part of feats?
     
     public String getCharacterName(String characterName){
@@ -34,7 +39,7 @@ public class CoreCharacter {
             return null;
         }
     }
-    //fucking hell
+    
     public String getCharacterRace(String characterRace){
         if (characterRace.equalsIgnoreCase("race")){
             return race;
@@ -151,6 +156,14 @@ public class CoreCharacter {
         } else {
             return null;
         }
+    }
+    
+    public void addLanguage(String newLanguage){
+        languages.add(newLanguage);
+    }
+    
+    public void removeLanguage(String lostLanguage){
+        languages.remove(lostLanguage);
     }
 }
     
