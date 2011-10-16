@@ -28,10 +28,13 @@ public class CoreCharacter {
     private int movespeed;
     private String notes;
     private List languages;
+    private String status;
+    private List special;
     
-    // things Byran isn't sure how to code: skills, feats, items, spells, status, companion, special
+    // things Byran isn't sure how to code: skills*, feats*
     // should weapon proficencies be considered part of feats?
-    
+    //*started but needs more work or double check
+
     public String getCharacterName(String characterName){
         if (characterName.equalsIgnoreCase("name")){
             return name;
@@ -164,6 +167,22 @@ public class CoreCharacter {
     
     public void removeLanguage(String lostLanguage){
         languages.remove(lostLanguage);
+    }
+    
+    public String getCurrentStatus(String currentStatus){
+        if (currentStatus.equalsIgnoreCase("status")){
+            return status;
+        } else {
+            return null;
+        }
+    }
+    
+    public void addSpecial(String newSpecial){
+        special.add(newSpecial);
+    }
+    
+    public void removeSpecial(String lostSpecial){
+        special.remove(lostSpecial);
     }
 }
     
