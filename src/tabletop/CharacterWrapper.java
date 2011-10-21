@@ -1,5 +1,5 @@
 /*
- * Zachary McAnally
+ * Zachary McAnally, Austin Hanlin
  * 
  * This class wraps around the core character, applying modifiers to scores from other abilities and equipment.
  */
