@@ -12,7 +12,7 @@ package tabletop;
 public class Feat {
     private String name;
     private String description;
-    //modifier goes here
+    private Modifier modifier;
     private int levelTaken;
     private String sourcebook;
     
@@ -22,6 +22,16 @@ public class Feat {
         description = featDescription;
         levelTaken = level;
         sourcebook = source;
+        modifier = null;
+    }
+    
+    public Feat(String featName, String featDescription, Modifier newModifier, int level, String source)
+    {
+        name = featName;
+        description = featDescription;
+        levelTaken = level;
+        sourcebook = source;
+        modifier = newModifier;
     }
     
     public String getFeatName() {
@@ -40,11 +50,19 @@ public class Feat {
         return sourcebook;
     }
     
+    public Modifier getModifier(){
+        return modifier;
+    }
+    
     public void printFeat() {
         System.out.println("Name: " + name);
         System.out.println("Description: " + description);
+        if (modifier != null)
+        {
+            System.out.println("Modifier: ");
+            modifier.printModifier();
+        }
         System.out.println("Level Taken: " + levelTaken);
         System.out.println("Sourcebook: " + sourcebook);
     }
-    
 }

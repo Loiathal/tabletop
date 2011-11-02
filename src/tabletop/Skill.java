@@ -10,7 +10,7 @@ package tabletop;
  */
 public class Skill {
 
-    private String name
+    private String name;
     private int ranks;
     private String modifier;
     private String penalty;
@@ -18,7 +18,7 @@ public class Skill {
     
     public Skill(String skillName, int totalRanks, String abilityMod, String armorCheck, String pointsNeeded) {
         name = skillName;
-        ranks = totalRanks
+        ranks = totalRanks;
         modifier = abilityMod;
         penalty = armorCheck;
         availability = pointsNeeded;
