@@ -11,8 +11,8 @@ class Main {
         
         System.out.println("");
         
-        Skill Skill1 = new Skill("Jump", 15, "Strength", "yes", "class-skill");
-        Skill1.printSkill();
+//        Skill Skill1 = new Skill("Jump", 15, "Strength", "yes", "class-skill");
+//        Skill1.printSkill();
         
     }
 }
