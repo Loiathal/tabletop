@@ -1,12 +1,11 @@
 /*
- * To change this template, choose Tools | Templates and open the template in
- * the editor.
+ * This is for a modifier which applies to a roll.
  */
 package tabletop;
 
 /**
  *
- * @author zmcanally
+ * @author Zach McAnally, Bryan Burke
  */
 public class Modifier {
     private int modifierValue;
@@ -32,6 +31,7 @@ public class Modifier {
         System.out.println("Value: " + modifierValue);
         System.out.println("Applies To: " + modifies);
         System.out.println("Type: " + modifierType);
+        System.out.println();
     }
     
 }
