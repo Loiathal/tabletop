@@ -16,15 +16,6 @@ public class Feat {
     private int levelTaken;
     private String sourcebook;
     
-    //Need to add the initialization for modifier.
-    public Feat(String featName, String featDescription, int level, String source) {
-        name = featName;
-        description = featDescription;
-        levelTaken = level;
-        sourcebook = source;
-        modifier = null;
-    }
-    
     public Feat(String featName, String featDescription, Modifier newModifier, int level, String source)
     {
         name = featName;
