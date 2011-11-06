@@ -18,7 +18,6 @@ public class Feat {
     private int levelTaken;
     private String sourcebook;
     
-    
    
     public Feat(String featName, String featDescription, List listOfModifiers, int level, String source)
     {
