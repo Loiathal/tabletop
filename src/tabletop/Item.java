@@ -11,11 +11,11 @@ import java.util.Iterator;
  */
 public class Item {
    
-    private String itemType;
-    private String name;
-    private List modifierList;
-    private int weight;
-    private String description;
+    protected String itemType;
+    protected String name;
+    protected List modifierList;
+    protected int weight;
+    protected String description;
     
     public Item(String type, String itemName, List listofModifiers, int itemWeight, String itemDescription){
         itemType = type;
@@ -59,8 +59,7 @@ public class Item {
                     Modifier modifierObject=(Modifier)modifierIterator.next();
                     modifierObject.printModifier();
                 }
-            System.out.println();
-            System.out.println("Description: " + description);
         }
+        System.out.println("Description: " + description);
     }
 }

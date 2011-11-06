@@ -8,30 +8,24 @@
 
 package tabletop;
 
+import java.util.List;
+import java.util.Iterator;
 
 public class Feat {
     private String name;
     private String description;
-    private Modifier modifier;
+    private List modifierList;
     private int levelTaken;
     private String sourcebook;
     
-    //Need to add the initialization for modifier.
-    public Feat(String featName, String featDescription, int level, String source) {
-        name = featName;
-        description = featDescription;
-        levelTaken = level;
-        sourcebook = source;
-        modifier = null;
-    }
     
-    public Feat(String featName, String featDescription, Modifier newModifier, int level, String source)
+    public Feat(String featName, String featDescription, List listOfModifiers, int level, String source)
     {
         name = featName;
         description = featDescription;
         levelTaken = level;
         sourcebook = source;
-        modifier = newModifier;
+        modifierList = listOfModifiers;
     }
     
     public String getFeatName() {
@@ -50,19 +44,26 @@ public class Feat {
         return sourcebook;
     }
     
-    public Modifier getModifier(){
-        return modifier;
+    public List getModifierList(){
+        return modifierList;
     }
     
     public void printFeat() {
         System.out.println("Name: " + name);
-        System.out.println("Description: " + description);
-        if (modifier != null)
+        if (!modifierList.isEmpty())
         {
-            System.out.println("Modifier: ");
-            modifier.printModifier();
+            System.out.println();
+            System.out.println("Modifiers: ");
+            Iterator modifierIterator = modifierList.iterator();
+            while(modifierIterator.hasNext())
+                {
+                    Modifier modifierObject=(Modifier)modifierIterator.next();
+                    modifierObject.printModifier();
+                }
         }
+        System.out.println();
         System.out.println("Level Taken: " + levelTaken);
         System.out.println("Sourcebook: " + sourcebook);
+        System.out.println("Description: " + description);
     }
 }
