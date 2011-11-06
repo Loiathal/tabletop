@@ -18,15 +18,16 @@ public class Feat {
     private int levelTaken;
     private String sourcebook;
     
-      public Feat(String featName, String featDescription, Modifier newModifier, int level, String source)
+    
+   
+    public Feat(String featName, String featDescription, List listOfModifiers, int level, String source)
     {
         name = featName;
         description = featDescription;
         levelTaken = level;
         sourcebook = source;
-        modifier = newModifier;
+        modifierList = listOfModifiers;
     }
-
     
     public String getFeatName() {
         return name;
