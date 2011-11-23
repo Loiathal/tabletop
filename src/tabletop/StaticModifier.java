@@ -7,12 +7,12 @@ package tabletop;
  *
  * @author Zach McAnally, Bryan Burke
  */
-public class Modifier {
+public class StaticModifier {
     private int modifierValue;
     private String modifies;
     private String modifierType;
     
-    public Modifier (int value, String appliesTo, String type)
+    public StaticModifier (int value, String appliesTo, String type)
     {
         modifierValue = value;
         modifies = appliesTo;
@@ -27,7 +27,7 @@ public class Modifier {
     public String getType(){
         return modifierType;
     }
-    public void printModifier() {
+    public void printStaticModifier() {
         System.out.println("Value: " + modifierValue);
         System.out.println("Applies To: " + modifies);
         System.out.println("Type: " + modifierType);

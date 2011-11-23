@@ -4,11 +4,16 @@ package tabletop;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
-//testing git gui
+
 
 class Main {
     public static void main(String[] args) {
-   
+        
+        DynamicModifier FlamingSwordDamage = new DynamicModifier("1d6", "Damage", "Untyped");
+        
+        FlamingSwordDamage.printDynamicModifier();
+        
+    
         ArrayList acrobaticsModifiers = new ArrayList();
         Modifier acrobaticsModifier1 = new Modifier(2, "Jump", "Untyped");
         Modifier acrobaticsModifier2 = new Modifier(2, "Tumble", "Untyped");
@@ -22,7 +27,7 @@ class Main {
         
         Skill Skill1 = new Skill("Jump", 15, "Strength", "yes", "class-skill");
         Skill1.printSkill();
-     
+    
         ArrayList kitModifiers = new ArrayList();
         Modifier Modifier1 = new Modifier(2, "Open Lock", "Untyped");
         Modifier Modifier2 = new Modifier(4, "Attack", "Morale");
@@ -43,5 +48,7 @@ class Main {
         
         Equipment magicSword = new Equipment("Weapon", "+5 flaming longsword", "Hand", magicSwordModifiers, 2, "Hits stuff.");
         magicSword.printItem();
+
+        
     }
 }
