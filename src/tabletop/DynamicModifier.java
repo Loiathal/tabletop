@@ -8,16 +8,16 @@ package tabletop;
  *
  * @author zmcanally
  */
-public class DynamicModifier {
+public class DynamicModifier extends Modifier{
     private int numberOfDice;
     private int dieType;
     private String modifies;
     private String modifierType;
     
-    public DynamicModifier(String value, String appliesTo, String type){
-        int locationOfd = value.indexOf("d");
-        numberOfDice = Integer.parseInt(value.substring(0, locationOfd));
-        dieType = Integer.parseInt(value.substring(locationOfd + 1));
+    public DynamicModifier(int dieNumber, int die, String appliesTo, String type)
+    {
+        numberOfDice = dieNumber;
+        dieType = die;
         modifies = appliesTo;
         modifierType = type;        
     }
@@ -34,7 +34,8 @@ public class DynamicModifier {
         return modifierType;
     }
     
-    public void printDynamicModifier() {
+    @Override
+    public void printModifier() {
         System.out.println("Value: " + numberOfDice + "d" + dieType);
         System.out.println("Applies To: " + modifies);
         System.out.println("Type: " + modifierType);
