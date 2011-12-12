@@ -51,6 +51,7 @@ class Main {
         Equipment magicSword = new Equipment("Weapon", "+5 flaming longsword", "Hand", magicSwordModifiers, 2, "Hits stuff.");
         magicSword.printItem();
 
-        
+        Spell herp = new Spell();
+        System.out.println(herp.castSpell(6, 10));
     }
 }
