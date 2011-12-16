@@ -50,8 +50,15 @@ class Main {
         
         Equipment magicSword = new Equipment("Weapon", "+5 flaming longsword", "Hand", magicSwordModifiers, 2, "Hits stuff.");
         magicSword.printItem();
+        System.out.println();
+        
+        
+        Spell PowerWordBlind = new Spell("Power Word Blind", "Arcane and Divine", "Enchantment (Compulsion)", "Mind-Affecting", "Sorcerer/Wizard 7, War Domain 7", "Verbal", "Standard", "Personal", "1 Creature with or under 200HP", "See Text", "None", true);
+        PowerWordBlind.printSpell();
 
-        Spell herp = new Spell();
-        System.out.println(herp.castSpell(6, 10));
+        
+        Spell DeathWard = new Spell("Death Ward", "Divine", "Necromancy", "None", "Cleric 4, Death Domain 4, Druid 5, Paladin 4", "Verbal, Somatic, Divine Focus", "Standard", "Touch", "Living Creature Touched", "1 Minute per Level", "Will Negates (Harmless)", true);
+        DeathWard.printSpell();
+        
     }
 }
