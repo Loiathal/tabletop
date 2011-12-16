@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class CoreCharacter {
+    public static int casterlvl(){
+        return 10;
+    }
     
     private String name;
     private String race;

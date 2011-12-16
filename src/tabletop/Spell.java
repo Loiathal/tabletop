@@ -5,12 +5,14 @@ package tabletop;
  */
 public class Spell {
     private String name, type, school, subSchool, level, components, castingTime, range, target, duration, save;
+    private int dieType;
     //level needs to have an int for DC calculation
     //range and duration need ints for calculation
     private boolean resistance;//boolean for casterlevel check
     
-    public Spell (String title, String source, String mainSchool, String minorSchool, String lvl, String castReqs, String castTime, String distance, String effect, String time, String savingThrow, boolean spellResistance)
+    public Spell (int die, String title, String source, String mainSchool, String minorSchool, String lvl, String castReqs, String castTime, String distance, String effect, String time, String savingThrow, boolean spellResistance)
     {
+        dieType = die;
         name = title;
         type = source;
         school = mainSchool;
@@ -23,6 +25,9 @@ public class Spell {
         duration = time;
         save = savingThrow;
         resistance = spellResistance;
+    }
+    public int getDieType(){
+        return dieType;
     }
     public String getName(){
         return name;
@@ -70,20 +75,17 @@ public class Spell {
         System.out.println("Casting Time: " + castingTime);
         System.out.print("Range: ");
             switch (range){
-                case "Personal":
-                    System.out.println("Personal");
-                    break;
                 case "Touch":
                     System.out.println("Creature Touched");
                     break;
                 case "Close":
-                    System.out.println("25 ft. + 5 ft./2 levels");
+                    System.out.println("25 ft. + 5 ft./2 levels: " + (25 + (5 * CoreCharacter.casterlvl())/2) + "ft.");
                     break;
                 case "Medium":
-                    System.out.println("100 ft. + 10 ft./level");
+                    System.out.println("100 ft. + 10 ft./level: " + (100 + (10 * CoreCharacter.casterlvl())) + "ft.");
                     break;
                 case "Long":
-                    System.out.println("400 ft. + 40 ft./level");
+                    System.out.println("400 ft. + 40 ft./level: " + (400 + (40 * CoreCharacter.casterlvl())) + "ft.");
                     break;
                 default:
                     System.out.println(range);
@@ -98,10 +100,5 @@ public class Spell {
                 System.out.println("No");
             }
         System.out.println();
-    }
-
-    public static int castSpell(int dieType, int castLevel){
-        return Die.rollDie(dieType, castLevel);
-
     }
 }
