@@ -9,6 +9,7 @@ import java.util.ArrayList;
 class Main {
     public static void main(String[] args) {
          
+        
 //        DynamicModifier FlamingSwordDamage = new DynamicModifier(1, 6, "Damage", "Untyped");
 //        
 //        FlamingSwordDamage.printModifier();

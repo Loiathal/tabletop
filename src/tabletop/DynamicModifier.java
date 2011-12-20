@@ -23,15 +23,27 @@ public class DynamicModifier extends Modifier{
     }
     
     //Needs to do a die roll.
+    @Override
     public int getValue(){
         return 0;
     }
     
+    @Override
     public String getAppliesTo(){
         return modifies;
     }
+    
+    @Override
     public String getType(){
         return modifierType;
+    }
+    
+    @Override
+    public void setValue(String value)
+    {
+        int DPlace = value.indexOf("d");
+        numberOfDice = Integer.parseInt(value.substring(0, DPlace));
+        dieType = Integer.parseInt(value.substring(DPlace+1));
     }
     
     @Override

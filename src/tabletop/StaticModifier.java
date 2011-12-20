@@ -19,14 +19,25 @@ public class StaticModifier extends Modifier{
         modifies = appliesTo;
         modifierType = type;
     }
+    
+    @Override
     public int getValue(){
         return modifierValue;
     }
+    
+    @Override
     public String getAppliesTo(){
         return modifies;
     }
+    
+    @Override
     public String getType(){
         return modifierType;
+    }
+    
+    @Override
+    public void setValue(int value){
+        modifierValue = value;
     }
     
     @Override

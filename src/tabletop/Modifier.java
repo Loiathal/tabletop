@@ -14,8 +14,18 @@ public abstract class Modifier {
         
     }
     
-    public void printModifier(){
-    }
+    public abstract int getValue();
+    
+    public abstract String getAppliesTo();
+    
+    public abstract String getType();
+    
+    public void setValue(int value){}
+    
+    public void setValue(String value){}
+    
+    public abstract void printModifier();
+    
 }
 
 
