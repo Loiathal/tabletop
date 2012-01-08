@@ -17,7 +17,7 @@ public class Attack {
     
     private String name;
     private Modifier attackBonus;
-    private String attackType;          // Melee or Ranged
+    private String attackType;          // "Melee Attack" or "Ranged Attack"
     private String applyingStat;        //Str, Dex, etc.
     List<Modifier> damage = new ArrayList<>();
     

@@ -4,12 +4,13 @@ package tabletop;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import Commands.CommandReceiver;
 
 
 class Main {
     public static void main(String[] args) {
          
-        
+        CommandReceiver.Attack("Longsword");
         
 //        DynamicModifier longswordDamage = new DynamicModifier(1, 8, "Damage", "Untyped");
 //        StaticModifier strengthDamage = new StaticModifier(4, "Damage", "Untyped");
@@ -30,19 +31,19 @@ class Main {
 //        
 //        
 // 
-        ArrayList acrobaticsModifiers = new ArrayList();
-        StaticModifier acrobaticsModifier1 = new StaticModifier(2, "Jump", "Untyped");
-        StaticModifier acrobaticsModifier2 = new StaticModifier (2, "Tumble", "Untyped");
-        acrobaticsModifiers.add(acrobaticsModifier1);
-        acrobaticsModifiers.add(acrobaticsModifier2);
-        
-        Feat Acrobatics = new Feat("Acrobatics", "Please only take it once", acrobaticsModifiers, 1, "PHB");
-        Acrobatics.printFeat();
-        
-        System.out.println("");
-        
-        Skill Skill1 = new Skill("Jump", 15, "Strength", "yes", "class-skill");
-        Skill1.printSkill();
+//        ArrayList acrobaticsModifiers = new ArrayList();
+//        StaticModifier acrobaticsModifier1 = new StaticModifier(2, "Jump", "Untyped");
+//        StaticModifier acrobaticsModifier2 = new StaticModifier (2, "Tumble", "Untyped");
+//        acrobaticsModifiers.add(acrobaticsModifier1);
+//        acrobaticsModifiers.add(acrobaticsModifier2);
+//        
+//        Feat Acrobatics = new Feat("Acrobatics", "Please only take it once", acrobaticsModifiers, 1, "PHB");
+//        Acrobatics.printFeat();
+//        
+//        System.out.println("");
+//        
+//        Skill Skill1 = new Skill("Jump", 15, "Strength", "yes", "class-skill");
+//        Skill1.printSkill();
 //    
 //        ArrayList kitModifiers = new ArrayList();
 //        StaticModifier Modifier1 = new StaticModifier(2, "Open Lock", "Untyped");

@@ -46,4 +46,9 @@ public class CharacterWrapper {
     {
         return attackList;
     }
+    
+    public int getBAB()
+    {
+        return character.getBaseAttackBonus();
+    }
 }

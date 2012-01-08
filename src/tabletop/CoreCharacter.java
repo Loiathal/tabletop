@@ -134,12 +134,8 @@ public class CoreCharacter {
          }
     }
     
-    public int getBaseAttackBonus(String baseAttackBonus){
-        if (baseAttackBonus.equalsIgnoreCase("bab") || baseAttackBonus.equalsIgnoreCase("baseattackbonus")) {
-            return BAB;
-        } else {
-            return -1;
-        }
+    public int getBaseAttackBonus(){
+        return BAB;
     }
 
     public int getWeight(String weight){
