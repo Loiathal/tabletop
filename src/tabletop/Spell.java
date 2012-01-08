@@ -5,14 +5,12 @@ package tabletop;
  */
 public class Spell {
     private String name, type, school, subSchool, level, components, castingTime, range, target, duration, save;
-    private int dieType;
     //level needs to have an int for DC calculation
     //range and duration need ints for calculation
-    private boolean resistance;//boolean for casterlevel check
+    private boolean resistance, attackRoll;
     
-    public Spell (int die, String title, String source, String mainSchool, String minorSchool, String lvl, String castReqs, String castTime, String distance, String effect, String time, String savingThrow, boolean spellResistance)
+    public Spell (String title, String source, String mainSchool, String minorSchool, String lvl, String castReqs, String castTime, String distance, String effect, String time, String savingThrow, boolean spellResistance, boolean attack)
     {
-        dieType = die;
         name = title;
         type = source;
         school = mainSchool;
@@ -25,9 +23,7 @@ public class Spell {
         duration = time;
         save = savingThrow;
         resistance = spellResistance;
-    }
-    public int getDieType(){
-        return dieType;
+        attackRoll = attack;
     }
     public String getName(){
         return name;
@@ -65,6 +61,9 @@ public class Spell {
     public boolean getResistance(){
         return resistance;
     }
+    public boolean getAttackRoll(){
+        return attackRoll;
+    }
     public void printSpell(){
         System.out.println("Spell Name: " + name);
         System.out.println("Classification: " + type);
@@ -94,11 +93,21 @@ public class Spell {
         System.out.println("Duration: " + duration);
         System.out.println("Saving Throw: " + save);
         System.out.print("Spell Resistance: ");
-            if (resistance = true) {
+            if (resistance == true) {
+                System.out.println("Yes");
+            } else {
+                System.out.println("No");
+            }
+        System.out.print("Attack Roll Necessary: ");
+            if (attackRoll == true) {
                 System.out.println("Yes");
             } else {
                 System.out.println("No");
             }
         System.out.println();
+    }
+    public static int castSpell(int dieType, int timesRolled){
+        return Die.rollDie(dieType, timesRolled);
+
     }
 }

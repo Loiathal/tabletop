@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class CoreCharacter {
-    public static int casterlvl(){
-        return 10;
-    }
+
     
     private String name;
     private String race;
@@ -37,6 +35,10 @@ public class CoreCharacter {
     // things Byran isn't sure how to code: skills*, feats*
     // should weapon proficencies be considered part of feats?
     //*started but needs more work or double check
+    
+    public void setCharacterName(String Name){
+        name = Name;
+    }
 
     public String getCharacterName(String characterName){
         if (characterName.equalsIgnoreCase("name")){
