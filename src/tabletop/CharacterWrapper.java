@@ -15,6 +15,11 @@ public class CharacterWrapper {
     List<Attack> attackList = new ArrayList<>();
     
     
+    public void setCharacterName(String Name){
+        character.setCharacterName(Name);
+    }
+    
+    
     //Still need to make this take modifiers into account.
     public int modifiedAbilityScore(String abilityScore)
     {
@@ -51,4 +56,6 @@ public class CharacterWrapper {
     {
         return character.getBaseAttackBonus();
     }
+    
+    
 }

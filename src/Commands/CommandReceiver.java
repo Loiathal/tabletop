@@ -23,17 +23,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class CommandReceiver {
-
-
-    private static CharacterWrapper character;
+    
+    private CharacterWrapper character;
+    
+    public CommandReceiver(CharacterWrapper character)
+    {
+        this.character = character;
+    }
 
     //Begin Bryan's commands
-    /*
+    
     public void FieldSet(String field, String value)
     {
         switch (field){
             case "name":
-                CoreCharacter.setCharacterName(value);
+                character.setCharacterName(value);
                 break;
             case "race":
                 break;
@@ -46,11 +50,6 @@ public class CommandReceiver {
             default:
                 System.out.println("Not a Valid Option");
         }
-    }
-
-    public void FieldChange(String field, String value)
-    {
-
     }
 
     public void FieldSet(String field, int value)
@@ -82,10 +81,13 @@ public class CommandReceiver {
 
     }
 
-    */
+    
 
     //Begin Zach's commands
-    public static void Attack(String attack)
+    
+    
+    //Need to add damage
+    public void Attack(String attack, Modifier attackModifier)
     {
   //      List attackList = character.getAttackList();
   //      List modifierList = character.getModifierList();
@@ -106,6 +108,7 @@ public class CommandReceiver {
         StaticModifier hasteBonus = new StaticModifier(1, "Melee Attack", "Untyped");
         StaticModifier longswordWeaponFocus = new StaticModifier(1, "Longsword Attack", "Untyped");
         
+        modifierList.add(Flanking);
         modifierList.add(hasteBonus);
         modifierList.add(longswordWeaponFocus);
 
@@ -120,7 +123,7 @@ public class CommandReceiver {
             while(attackIterator.hasNext())
             {
                 Attack currentAttack = (Attack)attackIterator.next();
-                Attack(currentAttack.getAttackName());
+                Attack(currentAttack.getAttackName(), Flanking);
             }
         }
 
@@ -198,6 +201,10 @@ public class CommandReceiver {
     }
 
 
+    public void Check()
+    {
+        
+    }
 
 
 

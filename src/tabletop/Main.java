@@ -10,7 +10,7 @@ import Commands.CommandReceiver;
 class Main {
     public static void main(String[] args) {
          
-        CommandReceiver.Attack("Longsword");
+        
         
 //        DynamicModifier longswordDamage = new DynamicModifier(1, 8, "Damage", "Untyped");
 //        StaticModifier strengthDamage = new StaticModifier(4, "Damage", "Untyped");
