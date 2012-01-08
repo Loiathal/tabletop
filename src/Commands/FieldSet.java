@@ -10,11 +10,11 @@ package Commands;
  */
 
 public class FieldSet {
-    fieldSet(field, value)
-            
-            
-            
-            
-            
-    fieldChange(field, value)
+//    fieldSet(field, value);
+//            
+//            
+//            
+//            
+//            
+//    fieldChange(field, value)
 }

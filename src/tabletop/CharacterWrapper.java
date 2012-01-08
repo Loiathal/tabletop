@@ -11,9 +11,11 @@ import java.util.ArrayList;
 
 public class CharacterWrapper {
     private CoreCharacter character;
-    List<String> equipmentList = new ArrayList<String>();
+    List<Modifier> modifierList = new ArrayList<>();
+    List<Attack> attackList = new ArrayList<>();
     
     
+    //Still need to make this take modifiers into account.
     public int modifiedAbilityScore(String abilityScore)
     {
         switch (abilityScore)
@@ -33,5 +35,15 @@ public class CharacterWrapper {
             default:
                 return -1;
         }
+    }
+    
+    public List getModifierList()
+    {
+        return modifierList;
+    }
+    
+    public List getAttackList()
+    {
+        return attackList;
     }
 }

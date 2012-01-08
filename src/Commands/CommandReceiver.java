@@ -9,11 +9,20 @@ package Commands;
  * @author Zachary
  */
 
-import tabletop.CoreCharacter;
+import tabletop.CharacterWrapper;
+import tabletop.Attack;
+import tabletop.Die;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class CommandReceiver {
-    
+
+    private CharacterWrapper character;
     
     //Begin Bryan's commands
+    /*
     public void FieldSet(String field, String value)
     {
         switch (field){
@@ -67,12 +76,54 @@ public class CommandReceiver {
         
     }
     
-    
+    */
     
     //Begin Zach's commands
-    public String Attack() 
+    public void Attack(String attack) 
     {        
-        return "derp";
+        List attackList = character.getAttackList();
+                
+        if (attack.equals("Full"))
+        {
+            //do a full attack, looping through the list of attacks
+        }
+        
+        Iterator attackIterator = attackList.iterator();
+        while(attackIterator.hasNext())
+        {
+            Attack currentAttack = (Attack)attackIterator.next();
+            if (currentAttack.getAttackName().equals(attack))
+            {
+                //perform attack
+                
+                //D20 Roll
+                System.out.println("Performing Attack " + attack);
+                int totalAttackRoll = 0;
+                int dieRoll = Die.rollDie(20, 1);
+                System.out.println("D20 roll: " + dieRoll);
+                totalAttackRoll = totalAttackRoll + dieRoll;
+                
+                //Search for and add any applicable modifiers
+                //An applicable modifier is the modifier from stat
+                //(currentAttack.getApplyingStat(),
+                //any modifier that applies to "Melee Attack" or "Ranged Attack"
+                //(as appropriate), or one that is named either 
+                //<attack name> or <attack name> + "Attack"
+                
+                
+                
+                
+                
+                
+                
+            }
+            else
+            {
+                //do nothing
+            }
+        }
+        
+        
     }
     
     public int CastSpell()

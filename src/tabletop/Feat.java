@@ -57,7 +57,7 @@ public class Feat {
             Iterator modifierIterator = modifierList.iterator();
             while(modifierIterator.hasNext())
                 {
-                    Modifier modifierObject=(Modifier)modifierIterator.next();
+                    Modifier modifierObject= (Modifier)modifierIterator.next();
                     modifierObject.printModifier();
                 }
         }
