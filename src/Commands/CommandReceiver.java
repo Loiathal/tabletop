@@ -24,7 +24,7 @@ import java.util.Iterator;
 
 public class CommandReceiver {
     
-    private CharacterWrapper character;
+    CharacterWrapper character = new CharacterWrapper();
     
     public CommandReceiver(CharacterWrapper character)
     {
@@ -40,13 +40,22 @@ public class CommandReceiver {
                 character.setCharacterName(value);
                 break;
             case "race":
+                character.setCharacterRace(value);
                 break;
             case "classlvl":
+                character.setClasslvl(value);
                 break;
             case "size":
+                character.setSizeCategory(value);
                 break;
             case "favoredClass":
+                character.setFavoriteClass(value);
                 break;
+            case "notes":
+                character.setNotes(value);
+                break;
+            case "status":
+                character.setStatus(value);
             default:
                 System.out.println("Not a Valid Option");
         }
@@ -56,20 +65,49 @@ public class CommandReceiver {
     {
         switch (field){
             case "ECL":
+                character.setEffectiveCharacterLevel(value);
                 break;
             case "reach":
+                character.setRange(value);
                 break;
             case "_str":
+                character.setAbilityScore(field, value);
                 break;
             case "_dex":
+                character.setAbilityScore(field, value);
                 break;
             case "_con":
+                character.setAbilityScore(field, value);
                 break;
             case "_int":
+                character.setAbilityScore(field, value);
                 break;
             case "_wis":
+                character.setAbilityScore(field, value);
                 break;
             case "_cha":
+                character.setAbilityScore(field, value);
+                break;
+            case "HP":
+                character.setBaseHealth(value);
+                break;
+            case "fortsave":
+                character.setSavingThrow(field, value);
+                break;
+            case "refsave":
+                character.setSavingThrow(field, value);
+                break;
+            case "willsave":
+                character.setSavingThrow(field, value);
+                break;
+            case "BAB":
+                character.setBaseAttackBonus(value);
+                break;
+            case "characterWeight":
+                character.setWeight(value);
+                break;
+            case "movespeed":
+                character.setSpeed(value);
                 break;
             default:
                 System.out.println("Not a Valid Option");

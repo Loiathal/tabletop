@@ -25,7 +25,7 @@ public class CoreCharacter {
     private int refsave;
     private int willsave;
     private int BAB;
-    private int characterweight;
+    private int characterWeight;
     private int movespeed;
     private String notes;
     private List languages;
@@ -48,6 +48,10 @@ public class CoreCharacter {
         }
     }
     
+    public void setCharacterRace(String Race){
+        race = Race;
+    }
+    
     public String getCharacterRace(String characterRace){
         if (characterRace.equalsIgnoreCase("race")){
             return race;
@@ -56,12 +60,20 @@ public class CoreCharacter {
         }
     }
     
-    public String getclasses(String classes){
+    public void setClasslvl(String Classlvl){
+        classlvl = Classlvl;
+    }
+    
+    public String getClasslvl(String classes){
         if (classes.equalsIgnoreCase("class") || classes.equalsIgnoreCase("classlevel") || classes.equalsIgnoreCase("classlvl")){
             return classlvl;
         } else {
             return null;
         }
+    }
+    
+    public void setEffectiveCharacterLevel(int effectiveCharacterLvl){
+        ECL = effectiveCharacterLvl;
     }
 
     public int getEffectiveCharacterLevel(String effectiveCharacterLevel){
@@ -70,6 +82,10 @@ public class CoreCharacter {
         } else {
             return -1;
         }
+    }
+    
+    public void setSizeCategory(String Size){
+        size = Size;
     }
 
     public String getSizeCategory (String sizeCategory){
@@ -80,6 +96,10 @@ public class CoreCharacter {
         }
     }
     
+    public void setRange(int Range){
+        reach = Range;
+    }
+    
     public int getRange (String range){
         if (range.equalsIgnoreCase("reach")){
             return reach;
@@ -88,11 +108,39 @@ public class CoreCharacter {
         }
     }
     
+    public void setFavoriteClass(String favoriteClass){
+        favoredClass = favoriteClass;
+    }
+    
     public String getFavoriteClass (String favoriteClass){
         if (favoriteClass.equalsIgnoreCase("favoredclass")){
             return favoredClass;
         } else {
             return null;
+        }
+    }
+    
+    public void setAbilityScore(String scoreName, int scoreValue){
+        switch (scoreName){
+            case "_str":
+                _str = scoreValue;
+                break;
+            case "_dex":
+                _dex = scoreValue;
+                break;
+            case "_con":
+                _con = scoreValue;
+                break;
+            case "_int":
+                _int = scoreValue;
+                break;
+            case "_wis":
+                _wis = scoreValue;
+                break;
+            case "_cha":
+                _cha = scoreValue;
+            default:
+                System.out.println("Not a Valid Option");
         }
     }
 
@@ -114,11 +162,31 @@ public class CoreCharacter {
          }
     }
     
+    public void setBaseHealth(int health){
+        HP = health;
+    }
+    
     public int getBaseHealth(String baseHealth){
         if (baseHealth.equalsIgnoreCase("hp") || baseHealth.equalsIgnoreCase("hitpoints") || baseHealth.equalsIgnoreCase("healthpoints")) {
             return HP;
         } else {
             return -1;
+        }
+    }
+    
+    public void setSavingThrow(String saveName, int saveValue){
+        switch (saveName) {
+            case "fortsave":
+                fortsave = saveValue;
+                break;
+            case "refsave":
+                refsave = saveValue;
+                break;
+            case "willsave":
+                willsave = saveValue;
+                break;
+            default:
+                System.out.println("Not a Valid Option");
         }
     }
     
@@ -134,16 +202,28 @@ public class CoreCharacter {
          }
     }
     
+    public void setBaseAttackBonus(int baseAttack){
+        BAB = baseAttack;
+    }
+    
     public int getBaseAttackBonus(){
         return BAB;
+    }
+    
+    public void setWeight(int weight){
+        characterWeight = weight;
     }
 
     public int getWeight(String weight){
         if (weight.equalsIgnoreCase("characterweight")) {
-            return characterweight;
+            return characterWeight;
         } else {
             return -1;
         }
+    }
+    
+    public void setSpeed(int speed){
+        movespeed = speed;
     }
     
     public int getSpeed(String speed){
@@ -152,6 +232,10 @@ public class CoreCharacter {
         } else {
             return -1;
         }
+    }
+    
+    public void setNotes(String Notes){
+        notes = Notes;
     }
     
     public String getCharacterNotes (String characterNotes){
@@ -168,6 +252,10 @@ public class CoreCharacter {
     
     public void removeLanguage(String lostLanguage){
         languages.remove(lostLanguage);
+    }
+    
+    public void setStatus(String currentStatus){
+        status = currentStatus;
     }
     
     public String getCurrentStatus(String currentStatus){

@@ -22,7 +22,7 @@ public class DynamicModifier extends Modifier{
         modifierType = type;        
     }
     
-    //Needs to do a die roll.
+    //Needs to do a die roll.1
     @Override
     public int getValue(){
         return Die.rollDie(dieType, numberOfDice);
