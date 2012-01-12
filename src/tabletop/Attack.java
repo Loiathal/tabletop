@@ -17,16 +17,19 @@ public class Attack {
     
     private String name;
     private Modifier attackBonus;
-    private String attackType;          // "Melee Attack" or "Ranged Attack"
+    private String attackType;          // "Melee" or "Ranged"
     private String applyingStat;        //Str, Dex, etc.
+    private String handed;              //Two, One, or Off
     List<Modifier> damage = new ArrayList<>();
     
-    public Attack(String name, Modifier attackBonus, String attackType, String applyingStat, List damageList)
+    public Attack(String name, Modifier attackBonus, String attackType, 
+            String applyingStat, String handed, List damageList)
     {
         this.name = name;
         this.attackBonus = attackBonus;
         this.attackType = attackType;
         this.applyingStat = applyingStat;
+        this.handed = handed;
         this.damage = damageList;
     }
 
@@ -55,11 +58,18 @@ public class Attack {
         return damage;
     }
     
+    public String getHanded()
+    {
+        return handed;
+    }
     
     public void printAttack()
     {
         System.out.println("Attack name: " + name);
         System.out.println("Attack Bonus: " + attackBonus.getValue());
+        System.out.println("Attack Type: " + attackType);
+        System.out.println("Applying Stat: " + applyingStat);
+        System.out.println("Number of Hands: " + handed);
         System.out.println("Damage: ");
         Iterator attackIterator = damage.iterator();
         while (attackIterator.hasNext())

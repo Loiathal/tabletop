@@ -12,7 +12,7 @@ class Main {
          
         
         
-//        DynamicModifier longswordDamage = new DynamicModifier(1, 8, "Damage", "Untyped");
+//        DynamicModifier longswordDamage = new DynamicModifier(1, 8, "Damage", "Longsword");
 //        StaticModifier strengthDamage = new StaticModifier(4, "Damage", "Untyped");
 //        StaticModifier attackBonus = new StaticModifier(7, "Attack", "Untyped");
 //        ArrayList longswordDamageList = new ArrayList();
@@ -24,7 +24,7 @@ class Main {
         
         
         
-//        DynamicModifier FlamingSwordDamage = new DynamicModifier(1, 6, "Damage", "Untyped");
+//        DynamicModifier FlamingSwordDamage = new DynamicModifier(1, 6, "Damage", "Fire");
 //      
 //        FlamingSwordDamage.printModifier();
 //        

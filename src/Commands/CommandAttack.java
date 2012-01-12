@@ -16,20 +16,22 @@ public class CommandAttack extends CommandAbstract {
     
     private String attackName;
     private Modifier attackModifer;
+    private Modifier damageModifier;
     private CommandReceiver myReceiver;
     
     
-    public CommandAttack(String attackName, Modifier attackModifier,
+    public CommandAttack(String attackName, Modifier attackModifier, Modifier damageModifier, 
             CommandReceiver receiver)
     {
         this.myReceiver = receiver;
         this.attackName = attackName;
         this.attackModifer = attackModifier;
+        this.damageModifier = damageModifier;
     }
     
     public void execute()
     {
-        myReceiver.Attack(attackName, attackModifer);
+        myReceiver.Attack(attackName, attackModifer, damageModifier);
     }
     
 }
