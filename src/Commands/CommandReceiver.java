@@ -21,8 +21,7 @@ import tabletop.Modifier;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.math;
-
+import java.lang.Math;
 
 public class CommandReceiver {
     
@@ -118,7 +117,55 @@ public class CommandReceiver {
 
     public void FieldChange(String field, int value)
     {
-
+        switch (field){
+            case "ECL":
+                character.setEffectiveCharacterLevel(character.getEffectiveCharacterLevel() + value);
+                break;
+            case "reach":
+                character.setRange(character.getRange() + value);
+                break;
+            case "_str":
+                character.setAbilityScore(field, character.getAbilityScore(field) + value);
+                break;
+            case "_dex":
+                character.setAbilityScore(field, character.getAbilityScore(field) + value);
+                break;
+            case "_con":
+                character.setAbilityScore(field, character.getAbilityScore(field) + value);
+                break;
+            case "_int":
+                character.setAbilityScore(field, character.getAbilityScore(field) + value);
+                break;
+            case "_wis":
+                character.setAbilityScore(field, character.getAbilityScore(field) + value);
+                break;
+            case "_cha":
+                character.setAbilityScore(field, character.getAbilityScore(field) + value);
+                break;
+            case "HP":
+                character.setBaseHealth(character.getBaseHealth() + value);
+                break;
+            case "fortsave":
+                character.setSavingThrow(field, character.getSavingThrow(field) + value);
+                break;
+            case "refsave":
+                character.setSavingThrow(field, character.getSavingThrow(field) + value);
+                break;
+            case "willsave":
+                character.setSavingThrow(field, character.getSavingThrow(field) + value);
+                break;
+            case "BAB":
+                character.setBaseAttackBonus(character.getBAB() + value);
+                break;
+            case "characterWeight":
+                character.setWeight(character.getWeight() + value);
+                break;
+            case "movespeed":
+                character.setSpeed(character.getSpeed() + value);
+                break;
+            default:
+                System.out.println("Not a Valid Option");
+        }
     }
 
     
