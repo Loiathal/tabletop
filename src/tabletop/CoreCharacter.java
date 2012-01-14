@@ -225,4 +225,83 @@ public class CoreCharacter {
     public void removeSpecial(String lostSpecial){
         special.remove(lostSpecial);
     }
+    
+    public void dump(String field){
+        switch (field){
+            case "name":
+                System.out.println(field + ": " + name);
+                break;
+            case "race":
+                System.out.println(field + ": " + race);
+                break;
+            case "classlvl":
+                System.out.println(field + ": " + classlvl);
+                break;
+            case "ECL":
+                System.out.println(field + ": " + ECL);
+                break;
+            case "size":
+                System.out.println(field + ": " + size);
+                break;
+            case "reach":
+                System.out.println(field + ": " + reach);
+                break;
+            case "favoredClass":
+                System.out.println(field + ": " + favoredClass);
+                break;
+            case "_str":
+                System.out.println(field + ": " + _str);
+                break;
+            case "_dex":
+                System.out.println(field + ": " + _dex);
+                break;
+            case "_con":
+                System.out.println(field + ": " + _con);
+                break;
+            case "_int":
+                System.out.println(field + ": " + _int);
+                break;
+            case "_wis":
+                System.out.println(field + ": " + _wis);
+                break;
+            case "_cha":
+                System.out.println(field + ": " + _cha);
+                break;
+            case "HP":
+                System.out.println(field + ": " + HP);
+                break;
+            case "fortsave":
+                System.out.println(field + ": " + fortsave);
+                break;
+            case "refsave":
+                System.out.println(field + ": " + refsave);
+                break;
+            case "willsave":
+                System.out.println(field + ": " + willsave);
+                break;
+            case "BAB":
+                System.out.println(field + ": " + BAB);
+                break;
+            case "characterWeight":
+                System.out.println(field + ": " + characterWeight);
+                break;
+            case "movespeed":
+                System.out.println(field + ": " + movespeed);
+                break;
+            case "notes":
+                System.out.println(field + ": " + notes);
+                break;
+            case "languages":
+                System.out.println(field + ": " + languages);
+                break;
+            case "status":
+                System.out.println(field + ": " + status);
+                break;
+            case "special":
+                System.out.println(field + ": " + special);
+                break;
+            default:
+                System.out.println("Not a Valid Option");
+        }
+    }
 }

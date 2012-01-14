@@ -161,12 +161,28 @@ public class CharacterWrapper {
         return character.getCharacterNotes();
     }
     
+    public void addLanguage(String newLanguage){
+        character.addLanguage(newLanguage);
+    }
+    
+    public void removeLanguage(String lostLanguage){
+        character.removeLanguage(lostLanguage);
+    }
+    
     public void setStatus(String currentStatus){
         character.setStatus(currentStatus);
     }
     
     public String getCharacterStatus(){
         return character.getCharacterNotes();
+    }
+    
+    public void addSpecial(String newSpecial){
+        character.addSpecial(newSpecial);
+    }
+    
+    public void removeSpecial(String lostSpecial){
+        character.removeSpecial(lostSpecial);
     }
     
     

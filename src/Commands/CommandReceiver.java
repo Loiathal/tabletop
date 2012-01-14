@@ -167,9 +167,33 @@ public class CommandReceiver {
                 System.out.println("Not a Valid Option");
         }
     }
-
     
+    public void listAdd(String field, String item){
+        switch (field) {
+            case "language":
+                character.addLanguage(item);
+                break;
+            case "special":
+                character.addSpecial(item);
+                break;
+            default:
+                System.out.println("Not a Valid Option");
+        }
+    }
 
+    public void listRemove(String field, String item){
+        switch (field){
+            case "language":
+                character.removeLanguage(item);
+                break;
+            case "special":
+                character.removeLanguage(item);
+                break;
+            default:
+                System.out.println("Not a Valid Option");
+        }
+    }
+    
     //Begin Zach's commands
     
     
