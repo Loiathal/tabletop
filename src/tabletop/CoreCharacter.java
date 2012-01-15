@@ -29,12 +29,18 @@ public class CoreCharacter {
     private int movespeed;
     private String notes;
     private List languages;
+    private List skills;
     private String status;
     private List special;
     
     // things Byran isn't sure how to code: skills*, feats*
     // should weapon proficencies be considered part of feats?
     //*started but needs more work or double check
+    
+    public CoreCharacter()
+    {
+        //empty Constructor
+    }
     
     public void setCharacterName(String Name){
         name = Name;
@@ -224,6 +230,22 @@ public class CoreCharacter {
     
     public void removeSpecial(String lostSpecial){
         special.remove(lostSpecial);
+    }
+    
+    public List getSkills()
+    {
+        return skills;
+    }
+    
+    public void addNewSkill(String name, int ranks, String abilityMod, int armorCheck, int classSkill)
+    {
+        Skill newSkill = new Skill(name, ranks, abilityMod, armorCheck, classSkill);
+        skills.add(newSkill);
+    }
+    
+    public void addSkillPoints(String name, int ranks)
+    {
+        
     }
     
     public void dump(String field){

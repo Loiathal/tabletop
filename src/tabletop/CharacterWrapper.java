@@ -15,6 +15,11 @@ public class CharacterWrapper {
     List<Attack> attackList = new ArrayList<>();
     
     
+    public CharacterWrapper(CoreCharacter character)
+    {
+        this.character = character;
+    }
+    
     public void setCharacterName(String Name){
         character.setCharacterName(Name);
     }

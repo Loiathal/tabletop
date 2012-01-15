@@ -11,6 +11,8 @@ class Main {
     public static void main(String[] args) {
          
         
+ 
+        
         
 //        DynamicModifier longswordDamage = new DynamicModifier(1, 8, "Damage", "Longsword");
 //        StaticModifier strengthDamage = new StaticModifier(4, "Damage", "Untyped");

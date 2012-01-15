@@ -15,15 +15,22 @@ import java.util.Iterator;
  */
 public class Attack {
     
+    public static final int OFF_HANDED = 0;
+    public static final int ONE_HANDED = 1;
+    public static final int TWO_HANDED = 2;
+    
+    public static final int MELEE = 0;
+    public static final int RANGED = 1;
+    
     private String name;
     private Modifier attackBonus;
-    private String attackType;          // "Melee" or "Ranged"
+    private int attackType;             // "Melee" or "Ranged"
     private String applyingStat;        //Str, Dex, etc.
-    private String handed;              //Two, One, or Off
+    private int handed;                 //Two, One, or Off
     List<Modifier> damage = new ArrayList<>();
     
-    public Attack(String name, Modifier attackBonus, String attackType, 
-            String applyingStat, String handed, List damageList)
+    public Attack(String name, Modifier attackBonus, int attackType, 
+            String applyingStat, int handed, List damageList)
     {
         this.name = name;
         this.attackBonus = attackBonus;
@@ -43,7 +50,7 @@ public class Attack {
         return attackBonus;
     }
     
-    public String getAttackType()
+    public int getAttackType()
     {
         return attackType;
     }
@@ -58,7 +65,7 @@ public class Attack {
         return damage;
     }
     
-    public String getHanded()
+    public int getHanded()
     {
         return handed;
     }

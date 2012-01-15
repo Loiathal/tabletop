@@ -9,6 +9,7 @@ package Commands;
  * @author Zachary
  */ 
 
+
 import tabletop.CharacterWrapper;
 import tabletop.Attack;
 import tabletop.Die;
@@ -25,7 +26,7 @@ import java.lang.Math;
 
 public class CommandReceiver {
     
-    CharacterWrapper character = new CharacterWrapper();
+    CharacterWrapper character;
     
     public CommandReceiver(CharacterWrapper character)
     {
@@ -197,35 +198,10 @@ public class CommandReceiver {
     //Begin Zach's commands
     
     
-    //Need to add damage
-    public void Attack(String attack, Modifier attackModifier, Modifier damageModifier)
+    public void Attack(String attack, int attackModifier, Modifier damageModifier)
     {
-  //      List attackList = character.getAttackList();
-  //      List modifierList = character.getModifierList();
-          
-
-
-        //Adding an attack to the list for testing purposes
-        List<Attack> attackList = new ArrayList<>();
-        List<Modifier> modifierList = new ArrayList<>();
-
-        StaticModifier Flanking = new StaticModifier(2, "Melee Attack", "Flanking");
-        DynamicModifier longswordDamage = new DynamicModifier(1, 8, "Melee Damage", "Longsword Damage");
-        ArrayList longswordDamageList = new ArrayList();
-        longswordDamageList.add(longswordDamage);
-
-        Attack longswordAttack = new Attack("Longsword", Flanking, "Melee", 
-                "Str", "One", longswordDamageList);
-        attackList.add(longswordAttack);
-
-        StaticModifier hasteBonus = new StaticModifier(1, "Melee Attack", "Untyped");
-        StaticModifier longswordWeaponFocus = new StaticModifier(1, "Longsword Attack", "Untyped");
-        
-        modifierList.add(Flanking);
-        modifierList.add(hasteBonus);
-        modifierList.add(longswordWeaponFocus);
-
-        //End testcode adding
+        List attackList = character.getAttackList();
+        List modifierList = character.getModifierList();
 
         if (attack.equals("Full"))
         {
@@ -245,6 +221,19 @@ public class CommandReceiver {
         while(attackIterator.hasNext())
         {
             Attack currentAttack = (Attack)attackIterator.next();
+            String currentAttackType;
+            String currentDamageType;
+            if (currentAttack.getAttackType() == Attack.MELEE)
+            {
+                currentAttackType = "Melee Attack";
+                currentDamageType = "Melee Damage";
+            }
+            else
+            {
+                currentAttackType = "Ranged Attack";
+                currentDamageType = "Ranged Damage";
+            }
+            
             if (currentAttack.getAttackName().equals(attack))
             {
                 //perform attack
@@ -278,7 +267,7 @@ public class CommandReceiver {
 
                     //perform check to see if this modifier applies to current attack
                     //by being Melee or Ranged.
-                    if (currentModifier.getAppliesTo().equals(currentAttack.getAttackType() + " Attack"))
+                    if (currentModifier.getAppliesTo().equals(currentAttackType))
                     {
                         int attackModifierBonus = currentModifier.getValue();
                         totalAttackRoll = totalAttackRoll + attackModifierBonus;
@@ -293,6 +282,13 @@ public class CommandReceiver {
                        System.out.println("Bonus from " + currentModifier.getType() + ": " + attackModifierBonus);
                     }
                 }
+                
+                int miscAttackBonus = currentAttack.getAttackBonus().getValue();
+                System.out.println("Bonus specific to attack: " + miscAttackBonus);
+                totalAttackRoll = totalAttackRoll + miscAttackBonus;                
+                
+                System.out.println("Bonus from misc: " + attackModifier);
+                totalAttackRoll = totalAttackRoll + attackModifier;
                 
                 System.out.println("Current Total Attack Bonus after all bonuses: " + totalAttackRoll);
                 
@@ -321,12 +317,13 @@ public class CommandReceiver {
                 int strengthDamageBonus = character.modifiedAbilityScore("str");
                 switch(currentAttack.getHanded())
                 {
-                    case "One":
+                    
+                    case Attack.ONE_HANDED:
                         //Do nothing
-                    case "Two":
+                    case Attack.TWO_HANDED:
                         //Not worried about casting double to int
                         strengthDamageBonus = (int)Math.floor(strengthDamageBonus * 1.5);
-                    case "Off":
+                    case Attack.OFF_HANDED:
                         strengthDamageBonus = (int)Math.floor(strengthDamageBonus * .5);
                         break;
                 }
@@ -343,7 +340,7 @@ public class CommandReceiver {
                     Modifier currentDamage = (Modifier)damageIterator.next();
                     //See if the modifier applies to the damage by applying to 
                     //"Melee Damage" or "Ranged Damage"
-                    if (currentDamage.getAppliesTo().equals(currentAttack.getAttackType() + " Damage"))
+                    if (currentDamage.getAppliesTo().equals(currentDamageType))
                     {
                         //apply it
                         int damageRollResult = currentDamage.getValue();
@@ -364,7 +361,7 @@ public class CommandReceiver {
                 //Add the passed in Modifier.
                 
                 int damageModifierRoll = damageModifier.getValue();
-                System.out.println(damageModifier.getType() + " damage = " + damageModifierRoll);
+                System.out.println("Damage from misc bonuses: " + damageModifierRoll);
                 totalDamage = totalDamage + damageModifierRoll;
                 
                 //Print Damage.
@@ -379,14 +376,18 @@ public class CommandReceiver {
         }
     }
 
-    public int CastSpell()
+    public void CastSpell()
     {
-        return 0;
+        
     }
 
 
-    public void Check()
+    public void Check(String check, Modifier skillModifier)
     {
+        List modifierList = character.getModifierList();
+        
+        
+        
         
     }
 
