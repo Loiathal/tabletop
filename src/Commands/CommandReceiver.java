@@ -210,7 +210,7 @@ public class CommandReceiver {
         List<Modifier> modifierList = new ArrayList<>();
 
         StaticModifier Flanking = new StaticModifier(2, "Melee Attack", "Flanking");
-        DynamicModifier longswordDamage = new DynamicModifier(1, 8, "Melee Damage", "Untyped");
+        DynamicModifier longswordDamage = new DynamicModifier(1, 8, "Melee Damage", "Longsword Damage");
         ArrayList longswordDamageList = new ArrayList();
         longswordDamageList.add(longswordDamage);
 
@@ -352,19 +352,23 @@ public class CommandReceiver {
                     }
                     
                     //See if the modifier applies by applying to "<Attack Name> Damage"
-                    
+                    if (currentDamage.getAppliesTo().equals(currentAttack.getAttackName() + " Damage"))
+                    {
+                        //print and apply to total
+                        int damageRollResult = currentDamage.getValue();
+                        System.out.println(currentDamage.getType() + " damage = " + damageRollResult);
+                        totalDamage = totalDamage + damageRollResult;
+                    }
                 }
-                
-                
                 
                 //Add the passed in Modifier.
                 
+                int damageModifierRoll = damageModifier.getValue();
+                System.out.println(damageModifier.getType() + " damage = " + damageModifierRoll);
+                totalDamage = totalDamage + damageModifierRoll;
+                
                 //Print Damage.
                 System.out.println("Total Damage: " + totalDamage);
-                
-                
-                
-                
                 
             }
             else
@@ -372,10 +376,7 @@ public class CommandReceiver {
                 //do nothing
             }
             
-            
         }
-        
-        
     }
 
     public int CastSpell()

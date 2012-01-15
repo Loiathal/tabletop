@@ -29,6 +29,7 @@ public class CommandAttack extends CommandAbstract {
         this.damageModifier = damageModifier;
     }
     
+    @Override
     public void execute()
     {
         myReceiver.Attack(attackName, attackModifer, damageModifier);
