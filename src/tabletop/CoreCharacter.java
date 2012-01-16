@@ -25,6 +25,7 @@ public class CoreCharacter {
     private int refsave;
     private int willsave;
     private int BAB;
+    private int casterLevel;
     private int characterWeight;
     private int movespeed;
     private String notes;
@@ -184,6 +185,16 @@ public class CoreCharacter {
         return BAB;
     }
     
+    public void setCasterLevel(int casterLevel)
+    {
+        this.casterLevel = casterLevel;
+    }
+    
+    public int getCasterLevel()
+    {
+        return casterLevel;
+    }
+    
     public void setWeight(int weight){
         characterWeight = weight;
     }
@@ -241,11 +252,6 @@ public class CoreCharacter {
     {
         Skill newSkill = new Skill(name, ranks, abilityMod, armorCheck, classSkill);
         skills.add(newSkill);
-    }
-    
-    public void addSkillPoints(String name, int ranks)
-    {
-        
     }
     
     public void dump(String field){

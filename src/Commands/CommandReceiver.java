@@ -103,7 +103,7 @@ public class CommandReceiver {
                 character.setSavingThrow(field, value);
                 break;
             case "BAB":
-                character.setBaseAttackBonus(value);
+                character.setBAB(value);
                 break;
             case "characterWeight":
                 character.setWeight(value);
@@ -156,7 +156,7 @@ public class CommandReceiver {
                 character.setSavingThrow(field, character.getSavingThrow(field) + value);
                 break;
             case "BAB":
-                character.setBaseAttackBonus(character.getBAB() + value);
+                character.setBAB(character.getBAB() + value);
                 break;
             case "characterWeight":
                 character.setWeight(character.getWeight() + value);
@@ -195,8 +195,19 @@ public class CommandReceiver {
         }
     }
     
+    
+    
     //Begin Zach's commands
     
+    public void listAttackAdd(Attack newAttack)
+    {
+        character.addAttack(newAttack);
+    }
+    
+    public void listAttackRemove(Attack attack)
+    {
+        character.removeAttack(attack);
+    }
     
     public void Attack(String attack, int attackModifier, Modifier damageModifier)
     {

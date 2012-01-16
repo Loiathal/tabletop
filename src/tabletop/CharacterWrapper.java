@@ -8,6 +8,7 @@ package tabletop;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class CharacterWrapper {
     private CoreCharacter character;
@@ -134,14 +135,6 @@ public class CharacterWrapper {
          }
     }
     
-    public void setBaseAttackBonus(int baseAttack){
-        character.setBaseAttackBonus(baseAttack);
-    }
-    
-    public int getBaseAttackBonus(){
-        return character.getBaseAttackBonus();
-    }
-    
     public void setWeight(int pounds){
         character.setWeight(pounds);
     }
@@ -223,10 +216,24 @@ public class CharacterWrapper {
         return attackList;
     }
     
+    public void addAttack(Attack newAttack)
+    {
+        attackList.add(newAttack);
+    }
+    
+    public void removeAttack(Attack attackName)
+    {
+        attackList.remove(attackName);
+    }
+    
     public int getBAB()
     {
         return character.getBaseAttackBonus();
     }
     
+    public void setBAB(int baseAttack)
+    {
+        character.setBaseAttackBonus(baseAttack);
+    }
     
 }

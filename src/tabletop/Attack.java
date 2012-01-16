@@ -29,6 +29,9 @@ public class Attack {
     private int handed;                 //Two, One, or Off
     List<Modifier> damage = new ArrayList<>();
     
+    //Modifier attackBonus takes the form modifies = "Attack" and 
+    //modifierType = "Untyped"
+    
     public Attack(String name, Modifier attackBonus, int attackType, 
             String applyingStat, int handed, List damageList)
     {
