@@ -7,17 +7,23 @@ package tabletop;
  *
  * @author Zach McAnally, Bryan Burke
  */
+
+
 public class StaticModifier extends Modifier{
     private int modifierValue;
     private String modifies;
     private String modifierType;
+    private int active;
+    
+
     
     
-    public StaticModifier (int value, String appliesTo, String type)
+    public StaticModifier (int value, String appliesTo, String type, int active)
     {
         modifierValue = value;
         modifies = appliesTo;
         modifierType = type;
+        this.active = active;
     }
     
     @Override
@@ -33,6 +39,12 @@ public class StaticModifier extends Modifier{
     @Override
     public String getType(){
         return modifierType;
+    }
+    
+    @Override
+    public int getActive()
+    {
+        return active;
     }
     
     @Override

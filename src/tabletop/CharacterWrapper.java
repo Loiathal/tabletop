@@ -14,6 +14,7 @@ public class CharacterWrapper {
     private CoreCharacter character;
     List<Modifier> modifierList = new ArrayList<>();
     List<Attack> attackList = new ArrayList<>();
+    List<Skill> skillList = new ArrayList<>();
     
     
     public CharacterWrapper(CoreCharacter character)
@@ -210,6 +211,21 @@ public class CharacterWrapper {
     public List getAttackList()
     {
         return attackList;
+    }
+    
+    public List getSkillList()
+    {
+        return skillList;
+    }
+    
+    public void addSkill(Skill newSkill)
+    {
+        skillList.add(newSkill);
+    }
+    
+    public void removeSkill(Skill skillName)
+    {
+        skillList.remove(skillName);
     }
     
     public void addAttack(Attack newAttack)

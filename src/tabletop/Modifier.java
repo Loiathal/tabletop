@@ -10,6 +10,9 @@ package tabletop;
  */
 public abstract class Modifier {
     
+    public static final int NOT_ACTIVE = 0;
+    public static final int ACTIVE = 1;
+    
     public Modifier(){
         
     }
@@ -19,6 +22,8 @@ public abstract class Modifier {
     public abstract String getAppliesTo();
     
     public abstract String getType();
+    
+    public abstract int getActive();
     
     public void setValue(int value){}
     
