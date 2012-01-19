@@ -118,8 +118,10 @@ public class CoreCharacter {
                 break;
             case "_cha":
                 _cha = scoreValue;
+                break;
             default:
-                System.out.println("Not a Valid Option");
+                System.out.println("Not a Valid Option--CoreCharacter");
+                break;
         }
     }
 
@@ -162,6 +164,7 @@ public class CoreCharacter {
                 break;
             default:
                 System.out.println("Not a Valid Option");
+                break;
         }
     }
     
@@ -330,6 +333,7 @@ public class CoreCharacter {
                 break;
             default:
                 System.out.println("Not a Valid Option");
+                break;
         }
     }
 }

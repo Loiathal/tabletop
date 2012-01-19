@@ -58,8 +58,10 @@ public class CommandReceiver {
                 break;
             case "status":
                 character.setStatus(value);
+                break;
             default:
                 System.out.println("Not a Valid Option");
+                break;
         }
     }
 
@@ -113,6 +115,7 @@ public class CommandReceiver {
                 break;
             default:
                 System.out.println("Not a Valid Option");
+                break;
         }
     }
 
@@ -126,22 +129,22 @@ public class CommandReceiver {
                 character.setRange(character.getRange() + value);
                 break;
             case "_str":
-                character.setAbilityScore(field, character.getAbilityScore(field) + value);
+                character.setAbilityScore(field, character.getBaseAbilityScore(field) + value);
                 break;
             case "_dex":
-                character.setAbilityScore(field, character.getAbilityScore(field) + value);
+                character.setAbilityScore(field, character.getBaseAbilityScore(field) + value);
                 break;
             case "_con":
-                character.setAbilityScore(field, character.getAbilityScore(field) + value);
+                character.setAbilityScore(field, character.getBaseAbilityScore(field) + value);
                 break;
             case "_int":
-                character.setAbilityScore(field, character.getAbilityScore(field) + value);
+                character.setAbilityScore(field, character.getBaseAbilityScore(field) + value);
                 break;
             case "_wis":
-                character.setAbilityScore(field, character.getAbilityScore(field) + value);
+                character.setAbilityScore(field, character.getBaseAbilityScore(field) + value);
                 break;
             case "_cha":
-                character.setAbilityScore(field, character.getAbilityScore(field) + value);
+                character.setAbilityScore(field, character.getBaseAbilityScore(field) + value);
                 break;
             case "HP":
                 character.setBaseHealth(character.getBaseHealth() + value);
@@ -166,6 +169,7 @@ public class CommandReceiver {
                 break;
             default:
                 System.out.println("Not a Valid Option");
+                break;
         }
     }
     
@@ -179,6 +183,7 @@ public class CommandReceiver {
                 break;
             default:
                 System.out.println("Not a Valid Option");
+                break;
         }
     }
 
@@ -192,6 +197,7 @@ public class CommandReceiver {
                 break;
             default:
                 System.out.println("Not a Valid Option");
+                break;
         }
     }
     
@@ -207,6 +213,16 @@ public class CommandReceiver {
     public void listAttackRemove(Attack attack)
     {
         character.removeAttack(attack);
+    }
+    
+    public void listModifierAdd(Modifier newModifier)
+    {
+        character.addModifier(newModifier);
+    }
+    
+    public void listModifierRemove(Modifier modifierName)
+    {
+        character.removeModifier(modifierName);
     }
     
     public void Attack(String attack, int attackModifier, Modifier damageModifier)
@@ -263,13 +279,10 @@ public class CommandReceiver {
                 //(as appropriate), or one that is named "<attack name> Attack"
 
 
+                System.out.println("BAB: " + character.getBAB());
                 totalAttackRoll = totalAttackRoll + character.getBAB();
-
-                System.out.println("Current Total Attack Bonus after BAB: " + totalAttackRoll);
-
-                totalAttackRoll = totalAttackRoll + character.modifiedAbilityScore(currentAttack.getapplyingStat());
-
-                System.out.println("Current Total Attack Bonus after Strength: " + totalAttackRoll);
+                
+                totalAttackRoll = totalAttackRoll + character.getModifiedAbilityScore(currentAttack.getapplyingStat());
 
                 Iterator modifierIterator = modifierList.iterator();
                 while(modifierIterator.hasNext())
@@ -325,15 +338,17 @@ public class CommandReceiver {
                 }
                 
                 //Add Strength. Base results on getHanded().
-                int strengthDamageBonus = character.modifiedAbilityScore("str");
+                int strengthDamageBonus = character.getModifiedAbilityScore("str");
                 switch(currentAttack.getHanded())
                 {
                     
                     case Attack.ONE_HANDED:
                         //Do nothing
+                        break;
                     case Attack.TWO_HANDED:
                         //Not worried about casting double to int
                         strengthDamageBonus = (int)Math.floor(strengthDamageBonus * 1.5);
+                        break;
                     case Attack.OFF_HANDED:
                         strengthDamageBonus = (int)Math.floor(strengthDamageBonus * .5);
                         break;

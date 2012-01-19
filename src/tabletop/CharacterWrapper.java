@@ -81,23 +81,41 @@ public class CharacterWrapper {
         character.setAbilityScore(scoreName, scoreValue);
     }
     
-    public int getAbilityScore(String abilityScore){
-         if (abilityScore.equalsIgnoreCase("str") || abilityScore.equalsIgnoreCase("strength")) {
-             return character.getAbilityScore(abilityScore);
-         } else if (abilityScore.equalsIgnoreCase("dex") || abilityScore.equalsIgnoreCase("dexterity")) {
-             return character.getAbilityScore(abilityScore);
-         } else if (abilityScore.equalsIgnoreCase("con") || abilityScore.equalsIgnoreCase("constitution")) {
-             return character.getAbilityScore(abilityScore);
-         } else if (abilityScore.equalsIgnoreCase("int") || abilityScore.equalsIgnoreCase("intelligence")) {
-             return character.getAbilityScore(abilityScore);
-         } else if (abilityScore.equalsIgnoreCase("wis") || abilityScore.equalsIgnoreCase("wisdom")) {
-             return character.getAbilityScore(abilityScore);
-         } else if (abilityScore.equalsIgnoreCase("cha") || abilityScore.equalsIgnoreCase("charisma")) {
-             return character.getAbilityScore(abilityScore);
-         } else {
-             return -1;
-         }
+    public int getBaseAbilityScore(String abilityScore){
+        switch(abilityScore)
+        {
+            case "_str":
+                return character.getAbilityScore("_str");
+            case "_dex":
+                return character.getAbilityScore("_dex");
+            case "_con":
+                return character.getAbilityScore("_con");
+            case "_int":
+                return character.getAbilityScore("_int");
+            case "_wis":
+                return character.getAbilityScore("_wis");
+            case "_cha":
+                return character.getAbilityScore("_cha");
+            default:
+                return -1;
+        }
     }
+    
+    public int getModifiedAbilityScore(String abilityScore)
+    {
+        Iterator modifierIterator = modifierList.iterator();
+        
+        //do some work
+  
+        return 0;
+    }
+    
+    public int getModifiedAbilityModifier(String abilityScore)
+    {
+        
+        return 0;
+    }
+    
     
     public void setBaseHealth(int health){
         character.setBaseHealth(health);
@@ -120,6 +138,7 @@ public class CharacterWrapper {
                 break;
             default:
                 System.out.println("Not a Valid Option");
+                break;
         }
     }
     
@@ -183,29 +202,6 @@ public class CharacterWrapper {
         character.removeSpecial(lostSpecial);
     }
     
-    
-    //Still need to make this take modifiers into account.
-    public int modifiedAbilityScore(String abilityScore)
-    {
-        switch (abilityScore)
-        {
-            case "str": 
-                return character.getAbilityScore("str");
-            case "dex":
-                return character.getAbilityScore("dex");
-            case "con":
-                return character.getAbilityScore("con");
-            case "int":
-                return character.getAbilityScore("int");
-            case "wis":
-                return character.getAbilityScore("wis");
-            case "cha":
-                return character.getAbilityScore("cha");
-            default:
-                return -1;
-        }
-    }
-    
     public List getModifierList()
     {
         return modifierList;
@@ -224,6 +220,16 @@ public class CharacterWrapper {
     public void removeAttack(Attack attackName)
     {
         attackList.remove(attackName);
+    }
+    
+    public void addModifier(Modifier newModifier)
+    {
+        modifierList.add(newModifier);
+    }
+    
+    public void removeModifier(Modifier modifierName)
+    {
+        modifierList.remove(modifierName);
     }
     
     public int getBAB()
