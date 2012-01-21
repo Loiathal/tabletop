@@ -20,7 +20,7 @@ class Main {
         CharacterWrapper characterWrapper = new CharacterWrapper(coreCharacter);
         CommandReceiver character = new CommandReceiver(characterWrapper);
         
-        character.FieldSet("_str", 10);
+        character.FieldSet("_str", 14);
         character.FieldSet("_dex", 10);
         character.FieldSet("_con", 10);
         character.FieldSet("_int", 10);
@@ -28,12 +28,18 @@ class Main {
         character.FieldSet("_cha", 10);     
         character.FieldSet("BAB", 4);
  
-        AttackTest(character);
+        //AttackTest(character);
         System.out.println();
         System.out.println();
         
-        AbilityCheckTest(character);
+        //AbilityCheckTest(character);
+        System.out.println();
+        System.out.println();
         
+        
+        StaticModifier beltOfGiantStrength = new StaticModifier(2, "_str", "Enhancement", Modifier.ACTIVE);
+        character.listModifierAdd(beltOfGiantStrength);
+        System.out.println(character.test());
         
         
 //        DynamicModifier longswordDamage = new DynamicModifier(1, 8, "Damage", "Longsword");

@@ -9,6 +9,7 @@ package tabletop;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.lang.Math;
 
 public class CharacterWrapper {
     private CoreCharacter character;
@@ -102,21 +103,67 @@ public class CharacterWrapper {
         }
     }
     
+    public int getBaseAbilityModifier(String abilityScore)
+    {
+        switch(abilityScore)
+        {
+            case "_str":
+                return (int)Math.floor((character.getAbilityScore("_str") - 10) / 2);
+            case "_dex":
+                return (int)Math.floor((character.getAbilityScore("_dex") - 10) / 2);
+            case "_con":
+                return (int)Math.floor((character.getAbilityScore("_con") - 10) / 2);
+            case "_int":
+                return (int)Math.floor((character.getAbilityScore("_int") - 10) / 2);
+            case "_wis":
+                return (int)Math.floor((character.getAbilityScore("_wis") - 10) / 2);
+            case "_cha":
+                return (int)Math.floor((character.getAbilityScore("_cha") - 10) / 2);
+            default:
+                return -1;
+        }
+    }
+    
     public int getModifiedAbilityScore(String abilityScore)
     {
-        Iterator modifierIterator = modifierList.iterator();
-        
-        //do some work
-  
-        return 0;
+        int totalAbilityScore = getBaseAbilityScore(abilityScore);
+        for (int i = 0; i < modifierList.size(); i++)
+        {
+            //Check to see if the modifier is active or not.
+            Modifier currentModifier = modifierList.get(i);
+            if (currentModifier.getActive() == Modifier.ACTIVE)
+            {
+                //See if it applies to the current ability score. If so, 
+                //add it to the total.
+                if (currentModifier.getAppliesTo().equals(abilityScore))
+                {
+                    totalAbilityScore += currentModifier.getValue();
+                }
+            }
+        }
+        return totalAbilityScore;
     }
     
     public int getModifiedAbilityModifier(String abilityScore)
     {
-        
-        return 0;
+        switch(abilityScore)
+        {
+            case "_str":
+                return (int)Math.floor((getModifiedAbilityScore("_str") - 10) / 2);
+            case "_dex":
+                return (int)Math.floor((getModifiedAbilityScore("_dex") - 10) / 2);
+            case "_con":
+                return (int)Math.floor((getModifiedAbilityScore("_con") - 10) / 2);
+            case "_int":
+                return (int)Math.floor((getModifiedAbilityScore("_int") - 10) / 2);
+            case "_wis":
+                return (int)Math.floor((getModifiedAbilityScore("_wis") - 10) / 2);
+            case "_cha":
+                return (int)Math.floor((getModifiedAbilityScore("_cha") - 10) / 2);
+            default:
+                return -1;
+        }        
     }
-    
     
     public void setBaseHealth(int health){
         character.setBaseHealth(health);

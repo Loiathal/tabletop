@@ -126,21 +126,23 @@ public class CoreCharacter {
     }
 
     public int getAbilityScore(String abilityScore){
-         if (abilityScore.equalsIgnoreCase("str") || abilityScore.equalsIgnoreCase("strength")) {
-             return _str;
-         } else if (abilityScore.equalsIgnoreCase("dex") || abilityScore.equalsIgnoreCase("dexterity")) {
-             return _dex;
-         } else if (abilityScore.equalsIgnoreCase("con") || abilityScore.equalsIgnoreCase("constitution")) {
-             return _con;
-         } else if (abilityScore.equalsIgnoreCase("int") || abilityScore.equalsIgnoreCase("intelligence")) {
-             return _int;
-         } else if (abilityScore.equalsIgnoreCase("wis") || abilityScore.equalsIgnoreCase("wisdom")) {
-             return _wis;
-         } else if (abilityScore.equalsIgnoreCase("cha") || abilityScore.equalsIgnoreCase("charisma")) {
-             return _cha;
-         } else {
-             return -1;
-         }
+        switch(abilityScore)
+        {
+            case "_str":
+                return _str;
+            case "_dex":
+                return _dex;
+            case "_con":
+                return _con;
+            case "_int":
+                return _int;
+            case "_wis":
+                return _wis;
+            case "_cha":
+                return _cha;
+            default:
+                return -1;
+        }
     }
     
     public void setBaseHealth(int health){

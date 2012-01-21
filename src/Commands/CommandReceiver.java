@@ -33,6 +33,12 @@ public class CommandReceiver {
         this.character = character;
     }
 
+    public int test()
+    {
+        return character.getModifiedAbilityModifier("_str");
+    }
+    
+    
     //Begin Bryan's commands
     
     public void FieldSet(String field, String value)
@@ -444,6 +450,16 @@ public class CommandReceiver {
     
     public void SkillCheck(String check, int modifier)
     {
+        int totalCheckResult = 0;
+        System.out.println("Performing Check: " + check);
+        
+        int dieRoll = Die.rollDie(20, 1);
+        totalCheckResult += dieRoll;
+        System.out.println("D20 Roll: " + dieRoll);
+        
+        //Add ability modifier, ranks, and then any relevant modifiers.
+        
+        System.out.println("Ability Modifier: " );
         
     }
     
@@ -476,7 +492,6 @@ public class CommandReceiver {
                     System.out.println("Bonus from " + currentModifier.getType() + " : " + modifierValue);
                     totalCheckResult += modifierValue;
                 }
-                
             }            
         }
                     
