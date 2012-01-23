@@ -58,7 +58,7 @@ public class Attack {
         return attackType;
     }
     
-    public String getapplyingStat()
+    public String getApplyingStat()
     {
         return applyingStat;
     }

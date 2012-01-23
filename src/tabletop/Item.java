@@ -45,6 +45,16 @@ public class Item {
         return description;
     }
     
+    public void addModifier(Modifier newModifier)
+    {
+        modifierList.add(newModifier);
+    }
+    
+    public void removeModifier(Modifier modifier)
+    {
+        modifierList.add(modifier);
+    }
+    
     public void printItem(){
         System.out.println("Name: " + name);
         System.out.println("Item Type: " + itemType);

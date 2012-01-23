@@ -16,7 +16,8 @@ public class CharacterWrapper {
     List<Modifier> modifierList = new ArrayList<>();
     List<Attack> attackList = new ArrayList<>();
     List<Skill> skillList = new ArrayList<>();
-    
+    private EquipmentList equipment;
+    List<Item> itemList = new ArrayList<>();    
     
     public CharacterWrapper(CoreCharacter character)
     {
@@ -293,6 +294,16 @@ public class CharacterWrapper {
     public void removeModifier(Modifier modifierName)
     {
         modifierList.remove(modifierName);
+    }
+    
+    public void addItem(Item newItem)
+    {
+        itemList.add(newItem);
+    }
+    
+    public void removeItem(Item item)
+    {
+        itemList.remove(item);
     }
     
     public int getBAB()

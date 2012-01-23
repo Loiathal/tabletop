@@ -1,5 +1,5 @@
 /*
- * A piece of equipment is an item that takes up a slot on the body, or is worth slotless like
+ * A piece of equipment is an item that takes up a slot on the body, or is slotless like
  * an ioun stone.
  */
 package tabletop;
@@ -13,14 +13,14 @@ import java.util.Iterator;
  * @author Zach McAnally, Bryan Burke
  */
 public class Equipment extends Item{
-    private String slot;
+    private int slot;
     
-    public Equipment(String type, String itemName, String bodySlot, List listofModifiers, int itemWeight, String itemDescription){
+    public Equipment(String type, String itemName, int bodySlot, List listofModifiers, int itemWeight, String itemDescription){
         super (type, itemName, listofModifiers, itemWeight, itemDescription);
         slot = bodySlot;
     }
     
-    public String getBodySlot(){
+    public int getBodySlot(){
         return slot;
     }
     

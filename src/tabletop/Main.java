@@ -27,10 +27,6 @@ class Main {
         character.FieldSet("_wis", 10);     
         character.FieldSet("_cha", 10);     
         character.FieldSet("BAB", 4);
- 
-        //AttackTest(character);
-        System.out.println();
-        System.out.println();
         
         //AbilityCheckTest(character);
         System.out.println();
@@ -39,7 +35,9 @@ class Main {
         
         StaticModifier beltOfGiantStrength = new StaticModifier(2, "_str", "Enhancement", Modifier.ACTIVE);
         character.listModifierAdd(beltOfGiantStrength);
-        System.out.println(character.test());
+ 
+        AttackTest(character);
+        
         
         
 //        DynamicModifier longswordDamage = new DynamicModifier(1, 8, "Damage", "Longsword");

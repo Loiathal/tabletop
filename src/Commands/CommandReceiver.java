@@ -13,11 +13,12 @@ package Commands;
 import tabletop.CharacterWrapper;
 import tabletop.Attack;
 import tabletop.Die;
-
 import tabletop.DynamicModifier;
 import tabletop.StaticModifier;
 import tabletop.Modifier;
-
+import tabletop.Item;
+import tabletop.Equipment;
+import tabletop.EquipmentList;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class CommandReceiver {
         this.character = character;
     }
 
+    //This command for testing purposes only. Feel free to change it to whatever.
     public int test()
     {
         return character.getModifiedAbilityModifier("_str");
@@ -209,6 +211,7 @@ public class CommandReceiver {
     
     
     
+    
     //Begin Zach's commands
     
     public void listAttackAdd(Attack newAttack)
@@ -229,6 +232,16 @@ public class CommandReceiver {
     public void listModifierRemove(Modifier modifierName)
     {
         character.removeModifier(modifierName);
+    }
+    
+    public void itemAdd(Item item, int slot)
+    {
+        
+    }
+    
+    public void itemRemove(Item item, int slot)
+    {
+        
     }
     
     public void Attack(String attack, int attackModifier, Modifier damageModifier)
@@ -286,7 +299,9 @@ public class CommandReceiver {
                 System.out.println("BAB: " + character.getBAB());
                 totalAttackRoll = totalAttackRoll + character.getBAB();
                 
-                totalAttackRoll = totalAttackRoll + character.getModifiedAbilityScore(currentAttack.getapplyingStat());
+                String applyingStat = currentAttack.getApplyingStat();
+                System.out.println("Bonus from " + applyingStat.substring(1) + ":" + character.getModifiedAbilityModifier(applyingStat));
+                totalAttackRoll = totalAttackRoll + character.getModifiedAbilityModifier(currentAttack.getApplyingStat());
 
                 for (int j = 0; j < modifierList.size(); j++)
                 {
@@ -321,6 +336,7 @@ public class CommandReceiver {
                 totalAttackRoll = totalAttackRoll + attackModifier;
                 
                 System.out.println("Current Total Attack Bonus after all bonuses: " + totalAttackRoll);
+                System.out.println();
                 
                 
                 //Do damage for this attack for which the attack bonus was just printed.
@@ -346,23 +362,27 @@ public class CommandReceiver {
                     }
                 }
                 
-                //Add Strength. Base results on getHanded().
-                int strengthDamageBonus = character.getModifiedAbilityScore("str");
-                switch(currentAttack.getHanded())
+                //Add Strength if Melee. Base results on getHanded().
+                if (currentAttack.getAttackType() == Attack.MELEE)
                 {
+                    int strengthDamageBonus = character.getModifiedAbilityModifier("_str");
+                    switch(currentAttack.getHanded())
+                    {
                     
-                    case Attack.ONE_HANDED:
-                        //Do nothing
-                        break;
-                    case Attack.TWO_HANDED:
-                        //Not worried about casting double to int
-                        strengthDamageBonus = (int)Math.floor(strengthDamageBonus * 1.5);
-                        break;
-                    case Attack.OFF_HANDED:
-                        strengthDamageBonus = (int)Math.floor(strengthDamageBonus * .5);
-                        break;
+                        case Attack.ONE_HANDED:
+                            //Do nothing
+                            break;
+                        case Attack.TWO_HANDED:
+                            //Not worried about casting double to int
+                            strengthDamageBonus = (int)Math.floor(strengthDamageBonus * 1.5);
+                            break;
+                        case Attack.OFF_HANDED:
+                            strengthDamageBonus = (int)Math.floor(strengthDamageBonus * .5);
+                            break;
+                    }
+                    System.out.println("Damage from Strength: " + strengthDamageBonus);
+                    totalDamage = totalDamage + strengthDamageBonus;
                 }
-                totalDamage = totalDamage + strengthDamageBonus;
                 
                 //Check list of character modifiers for any that apply to damage.
                 //A valid modifier is one that applies to "Melee Damage" or 
