@@ -234,14 +234,34 @@ public class CommandReceiver {
         character.removeModifier(modifierName);
     }
     
-    public void itemAdd(Item item, int slot)
+    public Equipment getEquipped(int slot)
     {
-        
+        return character.getEquipSlot(slot);
     }
     
-    public void itemRemove(Item item, int slot)
+    public List getEquipList()
     {
-        
+        return character.getEquipList();
+    }
+    
+    public void itemAdd(Item item)
+    {
+        character.addItem(item);
+    }
+    
+    public void itemRemove(Item item)
+    {
+        character.removeItem(item);
+    }
+    
+    public void equip(Equipment equip)
+    {
+        character.equip(equip);
+    }
+    
+    public void remove(Equipment equip)
+    {
+        character.remove(equip);
     }
     
     public void Attack(String attack, int attackModifier, Modifier damageModifier)
@@ -307,7 +327,7 @@ public class CommandReceiver {
                 {
                     Modifier currentModifier = (Modifier)modifierList.get(j);
                     
-                    if (currentModifier.getActive() == Modifier.ACTIVE)
+                    if (currentModifier.getActive())
                     {
                         //perform check to see if this modifier applies to current attack
                         //by being Melee or Ranged.
@@ -354,7 +374,7 @@ public class CommandReceiver {
                 for (int j = 0; j < damage.size(); j++)
                 {
                     Modifier currentDamage = (Modifier)damage.get(j);
-                    if (currentDamage.getActive() == Modifier.ACTIVE)
+                    if (currentDamage.getActive())
                     {
                         int damageRollResult = currentDamage.getValue();
                         System.out.println(currentDamage.getType() + " damage = " + damageRollResult);
@@ -393,7 +413,7 @@ public class CommandReceiver {
                 {
                     Modifier currentDamage = (Modifier)modifierList.get(j);
                     
-                    if (currentDamage.getActive() == Modifier.ACTIVE)
+                    if (currentDamage.getActive())
                     {
                         //See if the modifier applies to the damage by applying to 
                         //"Melee Damage" or "Ranged Damage"
@@ -502,7 +522,7 @@ public class CommandReceiver {
         {
             Modifier currentModifier = (Modifier)modifierList.get(i);
             
-            if (currentModifier.getActive() == Modifier.ACTIVE)
+            if (currentModifier.getActive())
             {
                 //Check to see if the modifier applies. Modifiers that apply are ones that 
                 //apply to "<ability> Check"

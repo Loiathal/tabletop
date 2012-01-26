@@ -13,15 +13,20 @@ import java.lang.Math;
 
 public class CharacterWrapper {
     private CoreCharacter character;
+    int weightLoad;                 //Current weight of equipment/items
+    int maxHP;
+    int currentHP;
     List<Modifier> modifierList = new ArrayList<>();
     List<Attack> attackList = new ArrayList<>();
     List<Skill> skillList = new ArrayList<>();
     private EquipmentList equipment;
-    List<Item> itemList = new ArrayList<>();    
+    List<Item> itemList = new ArrayList<>();   
+    
     
     public CharacterWrapper(CoreCharacter character)
     {
         this.character = character;
+        this.weightLoad = 0;
     }
     
     public void setCharacterName(String Name){
@@ -132,7 +137,7 @@ public class CharacterWrapper {
         {
             //Check to see if the modifier is active or not.
             Modifier currentModifier = modifierList.get(i);
-            if (currentModifier.getActive() == Modifier.ACTIVE)
+            if (currentModifier.getActive())
             {
                 //See if it applies to the current ability score. If so, 
                 //add it to the total.
@@ -251,6 +256,34 @@ public class CharacterWrapper {
         character.removeSpecial(lostSpecial);
     }
     
+    public int getMaxHP()
+    {
+        int maxHP = character.getBaseHealth();
+        maxHP += getModifiedAbilityModifier("_con") * character.getClassLevelTotal();
+        for (int i = 0; i < modifierList.size(); i++)
+        {
+            Modifier currentModifier = modifierList.get(i);
+            if (currentModifier.getActive())
+                {
+                    if (currentModifier.getAppliesTo().equals("Health"))
+                    {
+                        maxHP += currentModifier.getValue();
+                    }
+                }
+        }
+        return maxHP;
+    }
+    
+    public int getCurrentHP()
+    {
+        return currentHP;
+    }
+    
+    public void setCurrentHP(int HP)
+    {
+        currentHP = HP;
+    }
+    
     public List getModifierList()
     {
         return modifierList;
@@ -266,6 +299,63 @@ public class CharacterWrapper {
         return skillList;
     }
     
+    public Equipment getEquipSlot(int slot)
+    {
+        return equipment.getEquip(slot);
+    }
+    
+    public List getEquipList()
+    {
+        return equipment.getEquipList();
+    }
+    
+    //Here write methods to add/remove equipment. Those methods need to also handle
+    //Modifier allocation.
+    
+    //This method equips the item to the appropriate slot (or unslotted list, if applicable).
+    //Assumes that the slot is already empty, and that the item in question is in
+    //the character's itemList.
+    public void equip(Equipment item)
+    {
+        //Verify that the item is owned.
+        if (!itemList.contains(item))
+        {
+            System.out.println("No such item is currentl owned.");
+        }
+        else
+        {
+            equipment.setEquip(item);
+            List equipmentModifiers = item.getItemModifierList();
+            for (int i = 0; i < equipmentModifiers.size(); i++)
+            {
+                Modifier currentModifier = (Modifier)equipmentModifiers.get(i);
+                modifierList.add(currentModifier);
+            }
+            //Clean the modifierList-- that is, make sure that no modifiers which do not stack are both active,
+            //And that no modifier has been incorrectly been labeled as inactive.
+            //THIS METHOD STILL MUST BE WRITTEN.
+            
+            itemList.remove(item);
+        }
+    }
+
+    public void remove(Equipment item)
+    {
+        equipment.removeEquip(item);
+        
+        List equipmentModifiers = item.getItemModifierList();
+        for (int i = 0; i < equipmentModifiers.size(); i++)
+        {
+            Modifier currentModifier = (Modifier)equipmentModifiers.get(i);
+            modifierList.remove(item);
+        }
+        //Clean the modifierList-- that is, make sure that no modifiers which do not stack are both active,
+        //And that no modifier has been incorrectly been labeled as inactive.
+        //THIS METHOD STILL MUST BE WRITTEN.
+        
+        itemList.add(item);
+    }
+        
     public void addSkill(Skill newSkill)
     {
         skillList.add(newSkill);
@@ -299,11 +389,13 @@ public class CharacterWrapper {
     public void addItem(Item newItem)
     {
         itemList.add(newItem);
+        weightLoad += newItem.getItemWeight();
     }
     
     public void removeItem(Item item)
     {
         itemList.remove(item);
+        weightLoad -= item.getItemWeight();
     }
     
     public int getBAB()
@@ -314,6 +406,15 @@ public class CharacterWrapper {
     public void setBAB(int baseAttack)
     {
         character.setBaseAttackBonus(baseAttack);
+    }
+    
+    //This is the all-important method which must be called whenever a piece of
+    //equipment is removed or added, or when a spell is cast or ends.
+    //Correctly sets modifiers to active or not active depending on whether
+    //they stack and such. Still under construction.
+    public void clean()
+    {
+        
     }
     
 }

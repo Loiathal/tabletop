@@ -13,12 +13,12 @@ public class StaticModifier extends Modifier{
     private int modifierValue;
     private String modifies;
     private String modifierType;
-    private int active;
+    private boolean active;
     
 
     
     
-    public StaticModifier (int value, String appliesTo, String type, int active)
+    public StaticModifier (int value, String appliesTo, String type, boolean active)
     {
         modifierValue = value;
         modifies = appliesTo;
@@ -42,7 +42,7 @@ public class StaticModifier extends Modifier{
     }
     
     @Override
-    public int getActive()
+    public boolean getActive()
     {
         return active;
     }

@@ -33,7 +33,7 @@ class Main {
         System.out.println();
         
         
-        StaticModifier beltOfGiantStrength = new StaticModifier(2, "_str", "Enhancement", Modifier.ACTIVE);
+        StaticModifier beltOfGiantStrength = new StaticModifier(2, "_str", "Enhancement", true);
         character.listModifierAdd(beltOfGiantStrength);
  
         AttackTest(character);
@@ -88,12 +88,12 @@ class Main {
         public static void AttackTest(CommandReceiver character)
     {
         //Create a new attack: A longsword
-        DynamicModifier longswordDamage = new DynamicModifier(1, 8, "Damage", "Longsword", Modifier.ACTIVE);
+        DynamicModifier longswordDamage = new DynamicModifier(1, 8, "Damage", "Longsword", true);
         ArrayList longswordDamageList = new ArrayList();
         longswordDamageList.add(longswordDamage);
-        StaticModifier noAttackBonus = new StaticModifier(0, "Attack", "Untyped", Modifier.ACTIVE);
+        StaticModifier noAttackBonus = new StaticModifier(0, "Attack", "Untyped", true);
         Attack longsword = new Attack("Longsword", noAttackBonus, Attack.MELEE, "_str", Attack.ONE_HANDED, longswordDamageList);
-        StaticModifier noDamageBonus = new StaticModifier(0, "Damage", "Untyped", Modifier.ACTIVE);
+        StaticModifier noDamageBonus = new StaticModifier(0, "Damage", "Untyped", true);
         character.listAttackAdd(longsword);
         
         //Note, getModifiedAbilityScore doesn't work yet.
@@ -102,9 +102,9 @@ class Main {
         System.out.println();
         
         //Now let's add some modifiers to test attack further.
-        StaticModifier Haste = new StaticModifier(1, "Melee Attack", "Haste", Modifier.ACTIVE);
+        StaticModifier Haste = new StaticModifier(1, "Melee Attack", "Haste", true);
         character.listModifierAdd(Haste);
-        StaticModifier WeaponFocus = new StaticModifier(1, "Longsword Attack", "Weapon Focus", Modifier.ACTIVE);
+        StaticModifier WeaponFocus = new StaticModifier(1, "Longsword Attack", "Weapon Focus", true);
         character.listModifierAdd(WeaponFocus);
         DynamicModifier flamingLongsword = new DynamicModifier(1,8,"Longsword Damage" , "Flaming Weapon", Modifier.ACTIVE);
         longswordDamageList.add(flamingLongsword);
@@ -113,7 +113,7 @@ class Main {
     
         public static void AbilityCheckTest(CommandReceiver character)
         {        
-            StaticModifier strengthCheckBonus = new StaticModifier(2, "str Check", "Brute Gauntlets", 1);
+            StaticModifier strengthCheckBonus = new StaticModifier(2, "str Check", "Brute Gauntlets", Modifier.ACTIVE);
             character.listModifierAdd(strengthCheckBonus);
             character.Check("str", 5);
         }

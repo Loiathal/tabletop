@@ -10,8 +10,8 @@ package tabletop;
  */
 public abstract class Modifier {
     
-    public static final int NOT_ACTIVE = 0;
-    public static final int ACTIVE = 1;
+    public static final boolean ACTIVE = true;
+    public static final boolean NOT_ACTIVE = false;
     
     public Modifier(){
         
@@ -23,7 +23,7 @@ public abstract class Modifier {
     
     public abstract String getType();
     
-    public abstract int getActive();
+    public abstract boolean getActive();
     
     public void setValue(int value){}
     

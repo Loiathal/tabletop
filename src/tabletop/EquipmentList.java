@@ -72,9 +72,9 @@ public class EquipmentList {
         return miscEquipList;
     }
     
-    public void setEquip(Equipment equip, int slot)
+    public void setEquip(Equipment equip)
     {
-        switch (slot)
+        switch (equip.getSlot())
         {
             case (FACE):
                 face = equip;
@@ -108,19 +108,43 @@ public class EquipmentList {
     
     //Before using this function, it is important to add the equip in that slot
     //to the item list in the CharacterWrapper.
-    public void removeEquip(Equipment item, int slot)
+    public void removeEquip(Equipment item)
     {
-        switch (slot)
+        switch (item.getSlot())
         {
             case (FACE):
                 face = emptyItem();
+                break;
+            case (HEAD):
+                head = emptyItem();
+                break;
+            case (BODY):
+                body = emptyItem();
+                break;
+            case (ARMS):
+                arms = emptyItem();
+                break;
+            case (GLOVES):
+                gloves = emptyItem();
+                break;
+            case (PANTS):
+                pants = emptyItem();
+                break;
+            case (BOOTS):
+                boots = emptyItem();
+                break;
+            case (MISC_EQUIP):
+                miscEquipList.remove(item);
+                break;
+            default:
+                System.out.println("No such item to dequip");
                 break;
         }
     }
     
     public Equipment emptyItem()
     {
-        Equipment emptyEquip = new Equipment("Nothing", "Empty Item", MISC_EQUIP, Collections.EMPTY_LIST, 0, "Nothing");
+        Equipment emptyEquip = new Equipment("Nothing", "Empty Item", MISC_EQUIP, Collections.EMPTY_LIST, 0, "Nothing", 0);
         return emptyEquip;
     }
     

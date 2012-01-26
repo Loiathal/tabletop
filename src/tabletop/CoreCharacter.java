@@ -11,6 +11,7 @@ public class CoreCharacter {
     private String race;
     private String classlvl;
     private int ECL;
+    private int classLevelTotal;
     private String size;
     private int reach;
     private String favoredClass;
@@ -74,6 +75,17 @@ public class CoreCharacter {
     public int getEffectiveCharacterLevel(){
         return ECL;
     }
+    
+    public int getClassLevelTotal()
+    {
+        return classLevelTotal;
+    }
+    
+    public void setClassLevelTotal(int total)
+    {
+        classLevelTotal = total;
+    }
+    
     
     public void setSizeCategory(String Size){
         size = Size;

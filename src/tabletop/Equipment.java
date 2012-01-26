@@ -15,12 +15,12 @@ import java.util.Iterator;
 public class Equipment extends Item{
     private int slot;
     
-    public Equipment(String type, String itemName, int bodySlot, List listofModifiers, int itemWeight, String itemDescription){
-        super (type, itemName, listofModifiers, itemWeight, itemDescription);
+    public Equipment(String type, String itemName, int bodySlot, List listofModifiers, int itemWeight, String itemDescription, int quantity){
+        super (type, itemName, listofModifiers, itemWeight, itemDescription, quantity);
         slot = bodySlot;
     }
     
-    public int getBodySlot(){
+    public int getSlot(){
         return slot;
     }
     
@@ -41,6 +41,7 @@ public class Equipment extends Item{
                     modifierObject.printModifier();
                 }
         }
+        System.out.println("Quantity: " + quantity);
         System.out.println("Description: " + description);
     }
 }

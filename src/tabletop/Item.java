@@ -16,13 +16,15 @@ public class Item {
     protected List modifierList;
     protected int weight;
     protected String description;
+    protected int quantity;
     
-    public Item(String type, String itemName, List listofModifiers, int itemWeight, String itemDescription){
+    public Item(String type, String itemName, List listofModifiers, int itemWeight, String itemDescription, int quantity){
         itemType = type;
         name = itemName;
         modifierList = listofModifiers;
         weight = itemWeight;
         description = itemDescription;
+        this.quantity = quantity;
     }
     
     public String getItemType(){
@@ -41,8 +43,18 @@ public class Item {
         return weight;
     }
     
+    public int getTotalWeight()
+    {
+        return quantity * weight;
+    }
+    
     public String getItemDescription(){
         return description;
+    }
+    
+    public int getQuantity()
+    {
+        return quantity;
     }
     
     public void addModifier(Modifier newModifier)
