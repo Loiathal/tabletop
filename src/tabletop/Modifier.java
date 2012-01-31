@@ -8,7 +8,10 @@ package tabletop;
  *
  * @author zmcanally
  */
-public abstract class Modifier {
+
+import java.util.Comparator;
+
+public abstract class Modifier implements Comparator<Modifier>{
     
     public static final boolean ACTIVE = true;
     public static final boolean NOT_ACTIVE = false;
@@ -30,6 +33,23 @@ public abstract class Modifier {
     public void setValue(String value){}
     
     public abstract void printModifier();
+    
+    @Override
+    public int compare(Modifier x, Modifier y)
+    {
+        if (x.getValue() > y.getValue())
+        {
+            return 1;
+        }
+        else if (x.getValue() < y.getValue())
+        {
+            return -1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
     
 }
 

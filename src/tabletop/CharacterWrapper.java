@@ -8,7 +8,6 @@ package tabletop;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.lang.Math;
 
 public class CharacterWrapper {
