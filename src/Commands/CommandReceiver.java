@@ -19,6 +19,7 @@ import tabletop.Modifier;
 import tabletop.Item;
 import tabletop.Equipment;
 import tabletop.EquipmentList;
+import tabletop.ModifierList;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -35,6 +36,11 @@ public class CommandReceiver {
     }
 
     //This command for testing purposes only. Feel free to change it to whatever.
+    
+    public ModifierList getModifiers()
+    {
+        return character.getModifierList();
+    }
     public int test()
     {
         return character.getModifiedAbilityModifier("_str");
@@ -267,7 +273,7 @@ public class CommandReceiver {
     public void Attack(String attack, int attackModifier, Modifier damageModifier)
     {
         List attackList = character.getAttackList();
-        List modifierList = character.getModifierList();
+        ModifierList modifierList = character.getModifierList();
 
         if (attack.equals("Full"))
         {
@@ -327,24 +333,21 @@ public class CommandReceiver {
                 {
                     Modifier currentModifier = (Modifier)modifierList.get(j);
                     
-                    if (currentModifier.getActive())
+                    //perform check to see if this modifier applies to current attack
+                    //by being Melee or Ranged.
+                    if (currentModifier.getAppliesTo().equals(currentAttackType))
                     {
-                        //perform check to see if this modifier applies to current attack
-                        //by being Melee or Ranged.
-                        if (currentModifier.getAppliesTo().equals(currentAttackType))
-                        {
-                            int attackModifierBonus = currentModifier.getValue();
-                            totalAttackRoll = totalAttackRoll + attackModifierBonus;
-                            System.out.println("Bonus from " + currentModifier.getType() + ": " + attackModifierBonus);
-                        }
-                        //perform check to see if this modifier applies to current attack
-                        //by applying specifically to this attack (weapon focus, for instance)
-                        if (currentModifier.getAppliesTo().equals(currentAttack.getAttackName() + " Attack"))
-                        {
-                            int attackModifierBonus = currentModifier.getValue();
-                            totalAttackRoll = totalAttackRoll + attackModifierBonus;
-                            System.out.println("Bonus from " + currentModifier.getType() + ": " + attackModifierBonus);
-                        }
+                        int attackModifierBonus = currentModifier.getValue();
+                        totalAttackRoll = totalAttackRoll + attackModifierBonus;
+                        System.out.println("Bonus from " + currentModifier.getType() + ": " + attackModifierBonus);
+                    }
+                    //perform check to see if this modifier applies to current attack
+                    //by applying specifically to this attack (weapon focus, for instance)
+                    if (currentModifier.getAppliesTo().equals(currentAttack.getAttackName() + " Attack"))
+                    {
+                        int attackModifierBonus = currentModifier.getValue();
+                        totalAttackRoll = totalAttackRoll + attackModifierBonus;
+                        System.out.println("Bonus from " + currentModifier.getType() + ": " + attackModifierBonus);
                     }
                 }   
                 
@@ -374,12 +377,10 @@ public class CommandReceiver {
                 for (int j = 0; j < damage.size(); j++)
                 {
                     Modifier currentDamage = (Modifier)damage.get(j);
-                    if (currentDamage.getActive())
-                    {
-                        int damageRollResult = currentDamage.getValue();
-                        System.out.println(currentDamage.getType() + " damage = " + damageRollResult);
-                        totalDamage = totalDamage + damageRollResult;
-                    }
+                    
+                    int damageRollResult = currentDamage.getValue();
+                    System.out.println(currentDamage.getType() + " damage = " + damageRollResult);
+                    totalDamage = totalDamage + damageRollResult;
                 }
                 
                 //Add Strength if Melee. Base results on getHanded().
@@ -413,27 +414,24 @@ public class CommandReceiver {
                 {
                     Modifier currentDamage = (Modifier)modifierList.get(j);
                     
-                    if (currentDamage.getActive())
+                    //See if the modifier applies to the damage by applying to 
+                    //"Melee Damage" or "Ranged Damage"
+                    if (currentDamage.getAppliesTo().equals(currentDamageType))
                     {
-                        //See if the modifier applies to the damage by applying to 
-                        //"Melee Damage" or "Ranged Damage"
-                        if (currentDamage.getAppliesTo().equals(currentDamageType))
-                        {
-                            //apply it
-                            int damageRollResult = currentDamage.getValue();
-                            System.out.println(currentDamage.getType() + " damage = " + damageRollResult);
-                            totalDamage = totalDamage + damageRollResult;
-                        }
-                        
-                        //See if the modifier applies by applying to "<Attack Name> Damage"
-                        if (currentDamage.getAppliesTo().equals(currentAttack.getAttackName() + " Damage"))
-                        {
-                            //print and apply to total
-                            int damageRollResult = currentDamage.getValue();
-                            System.out.println(currentDamage.getType() + " damage = " + damageRollResult);
-                            totalDamage = totalDamage + damageRollResult;
-                        }
-                    }    
+                        //apply it
+                        int damageRollResult = currentDamage.getValue();
+                        System.out.println(currentDamage.getType() + " damage = " + damageRollResult);
+                        totalDamage = totalDamage + damageRollResult;
+                    }
+
+                    //See if the modifier applies by applying to "<Attack Name> Damage"
+                    if (currentDamage.getAppliesTo().equals(currentAttack.getAttackName() + " Damage"))
+                    {
+                        //print and apply to total
+                        int damageRollResult = currentDamage.getValue();
+                        System.out.println(currentDamage.getType() + " damage = " + damageRollResult);
+                        totalDamage = totalDamage + damageRollResult;
+                    } 
                 }
                 
                 //Add the passed in Modifier.
@@ -517,22 +515,19 @@ public class CommandReceiver {
         
         //Add any modifiers to ability checks.
         
-        List modifierList = character.getModifierList();
+        ModifierList modifierList = character.getModifierList();
         for (int i = 0; i < modifierList.size(); i++)
         {
             Modifier currentModifier = (Modifier)modifierList.get(i);
             
-            if (currentModifier.getActive())
+            //Check to see if the modifier applies. Modifiers that apply are ones that 
+            //apply to "<ability> Check"
+            if (currentModifier.getAppliesTo().equals(check.substring(1) + " Check"))
             {
-                //Check to see if the modifier applies. Modifiers that apply are ones that 
-                //apply to "<ability> Check"
-                if (currentModifier.getAppliesTo().equals(check.substring(1) + " Check"))
-                {
-                    int modifierValue = currentModifier.getValue();
-                    System.out.println("Bonus from " + currentModifier.getType() + " : " + modifierValue);
-                    totalCheckResult += modifierValue;
-                }
-            }            
+                int modifierValue = currentModifier.getValue();
+                System.out.println("Bonus from " + currentModifier.getType() + " : " + modifierValue);
+                totalCheckResult += modifierValue;
+            }           
         }
                     
         //Add the passed in modifier.

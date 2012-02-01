@@ -13,15 +13,13 @@ public class DynamicModifier extends Modifier{
     private int dieType;
     private String modifies;
     private String modifierType;
-    private boolean active;
     
-    public DynamicModifier(int dieNumber, int die, String appliesTo, String type, boolean active)
+    public DynamicModifier(int dieNumber, int die, String appliesTo, String type)
     {
         numberOfDice = dieNumber;
         dieType = die;
         modifies = appliesTo;
         modifierType = type;        
-        this.active = active;
     }
     
     //Needs to do a die roll.1
@@ -38,12 +36,6 @@ public class DynamicModifier extends Modifier{
     @Override
     public String getType(){
         return modifierType;
-    }
-    
-    @Override
-    public boolean getActive()
-    {
-        return active;
     }
     
     @Override

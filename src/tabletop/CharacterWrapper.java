@@ -9,23 +9,26 @@ package tabletop;
 import java.util.List;
 import java.util.ArrayList;
 import java.lang.Math;
+import java.util.PriorityQueue;
 
 public class CharacterWrapper {
     private CoreCharacter character;
-    int weightLoad;                 //Current weight of equipment/items
-    int maxHP;
-    int currentHP;
-    List<Modifier> modifierList = new ArrayList<>();
+    private int weightLoad;                 //Current weight of equipment/items
+    private int maxHP;
+    private int currentHP;
     List<Attack> attackList = new ArrayList<>();
     List<Skill> skillList = new ArrayList<>();
     private EquipmentList equipment;
     List<Item> itemList = new ArrayList<>();   
+    private ModifierList modifierList;
     
     
     public CharacterWrapper(CoreCharacter character)
     {
         this.character = character;
         this.weightLoad = 0;
+        this.modifierList = new ModifierList();
+        this.equipment = new EquipmentList();
     }
     
     public void setCharacterName(String Name){
@@ -136,15 +139,12 @@ public class CharacterWrapper {
         {
             //Check to see if the modifier is active or not.
             Modifier currentModifier = modifierList.get(i);
-            if (currentModifier.getActive())
-            {
                 //See if it applies to the current ability score. If so, 
                 //add it to the total.
                 if (currentModifier.getAppliesTo().equals(abilityScore))
                 {
                     totalAbilityScore += currentModifier.getValue();
                 }
-            }
         }
         return totalAbilityScore;
     }
@@ -262,13 +262,10 @@ public class CharacterWrapper {
         for (int i = 0; i < modifierList.size(); i++)
         {
             Modifier currentModifier = modifierList.get(i);
-            if (currentModifier.getActive())
-                {
-                    if (currentModifier.getAppliesTo().equals("Health"))
-                    {
-                        maxHP += currentModifier.getValue();
-                    }
-                }
+            if (currentModifier.getAppliesTo().equals("Health"))
+            {
+                maxHP += currentModifier.getValue();
+            }
         }
         return maxHP;
     }
@@ -283,7 +280,7 @@ public class CharacterWrapper {
         currentHP = HP;
     }
     
-    public List getModifierList()
+    public ModifierList getModifierList()
     {
         return modifierList;
     }
@@ -328,12 +325,8 @@ public class CharacterWrapper {
             for (int i = 0; i < equipmentModifiers.size(); i++)
             {
                 Modifier currentModifier = (Modifier)equipmentModifiers.get(i);
-                modifierList.add(currentModifier);
+                modifierList.addModifier(currentModifier);
             }
-            //Clean the modifierList-- that is, make sure that no modifiers which do not stack are both active,
-            //And that no modifier has been incorrectly been labeled as inactive.
-            //THIS METHOD STILL MUST BE WRITTEN.
-            
             itemList.remove(item);
         }
     }
@@ -346,12 +339,8 @@ public class CharacterWrapper {
         for (int i = 0; i < equipmentModifiers.size(); i++)
         {
             Modifier currentModifier = (Modifier)equipmentModifiers.get(i);
-            modifierList.remove(item);
+            modifierList.removeModifier(currentModifier);
         }
-        //Clean the modifierList-- that is, make sure that no modifiers which do not stack are both active,
-        //And that no modifier has been incorrectly been labeled as inactive.
-        //THIS METHOD STILL MUST BE WRITTEN.
-        
         itemList.add(item);
     }
         
@@ -377,12 +366,12 @@ public class CharacterWrapper {
     
     public void addModifier(Modifier newModifier)
     {
-        modifierList.add(newModifier);
+        modifierList.addModifier(newModifier);
     }
     
     public void removeModifier(Modifier modifierName)
     {
-        modifierList.remove(modifierName);
+        modifierList.removeModifier(modifierName);
     }
     
     public void addItem(Item newItem)
