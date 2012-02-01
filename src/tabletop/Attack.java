@@ -23,16 +23,13 @@ public class Attack {
     public static final int RANGED = 1;
     
     private String name;
-    private Modifier attackBonus;
+    private int attackBonus;
     private int attackType;             // "Melee" or "Ranged"
     private String applyingStat;        //Str, Dex, etc.
     private int handed;                 //Two, One, or Off
     List<Modifier> damage = new ArrayList<>();
     
-    //Modifier attackBonus takes the form modifies = "Attack" and 
-    //modifierType = "Untyped"
-    
-    public Attack(String name, Modifier attackBonus, int attackType, 
+    public Attack(String name, int attackBonus, int attackType, 
             String applyingStat, int handed, List damageList)
     {
         this.name = name;
@@ -48,7 +45,7 @@ public class Attack {
         return name;
     }
     
-    public Modifier getAttackBonus()
+    public int getAttackBonus()
     {
         return attackBonus;
     }
@@ -76,7 +73,7 @@ public class Attack {
     public void printAttack()
     {
         System.out.println("Attack name: " + name);
-        System.out.println("Attack Bonus: " + attackBonus.getValue());
+        System.out.println("Attack Bonus: " + attackBonus);
         System.out.println("Attack Type: " + attackType);
         System.out.println("Applying Stat: " + applyingStat);
         System.out.println("Number of Hands: " + handed);

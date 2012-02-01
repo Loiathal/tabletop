@@ -78,13 +78,13 @@ public class Spell {
                     System.out.println("Creature Touched");
                     break;
                 case "Close":
-                    System.out.println("25 ft. + 5 ft./2 levels: " + (25 + (5 * CoreCharacter.casterlvl())/2) + "ft.");
+                    System.out.println("25 ft. + 5 ft./2 levels");
                     break;
                 case "Medium":
-                    System.out.println("100 ft. + 10 ft./level: " + (100 + (10 * CoreCharacter.casterlvl())) + "ft.");
+                    System.out.println("100 ft. + 10 ft./level");
                     break;
                 case "Long":
-                    System.out.println("400 ft. + 40 ft./level: " + (400 + (40 * CoreCharacter.casterlvl())) + "ft.");
+                    System.out.println("400 ft. + 40 ft./level");
                     break;
                 default:
                     System.out.println(range);

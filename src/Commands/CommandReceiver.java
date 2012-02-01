@@ -33,19 +33,7 @@ public class CommandReceiver {
     public CommandReceiver(CharacterWrapper character)
     {
         this.character = character;
-    }
-
-    //This command for testing purposes only. Feel free to change it to whatever.
-    
-    public ModifierList getModifiers()
-    {
-        return character.getModifierList();
-    }
-    public int test()
-    {
-        return character.getModifiedAbilityModifier("_str");
-    }
-    
+    }    
     
     //Begin Bryan's commands
     
@@ -270,7 +258,7 @@ public class CommandReceiver {
         character.remove(equip);
     }
     
-    public void Attack(String attack, int attackModifier, Modifier damageModifier)
+    public void Attack(String attack, int attackModifier, int damageModifier)
     {
         List attackList = character.getAttackList();
         ModifierList modifierList = character.getModifierList();
@@ -285,6 +273,8 @@ public class CommandReceiver {
             {
                 Attack currentAttack = (Attack)attackList.get(i);
                 Attack(currentAttack.getAttackName(), attackModifier, damageModifier);
+                System.out.println();
+                System.out.println();
             }
         }
 
@@ -351,7 +341,7 @@ public class CommandReceiver {
                     }
                 }   
                 
-                int miscAttackBonus = currentAttack.getAttackBonus().getValue();
+                int miscAttackBonus = currentAttack.getAttackBonus();
                 System.out.println("Bonus specific to attack: " + miscAttackBonus);
                 totalAttackRoll = totalAttackRoll + miscAttackBonus;                
                 
@@ -436,7 +426,7 @@ public class CommandReceiver {
                 
                 //Add the passed in Modifier.
                 
-                int damageModifierRoll = damageModifier.getValue();
+                int damageModifierRoll = damageModifier;
                 System.out.println("Damage from misc bonuses: " + damageModifierRoll);
                 totalDamage = totalDamage + damageModifierRoll;
                 
@@ -511,6 +501,7 @@ public class CommandReceiver {
         System.out.println("D20 Roll: " + dieRoll);
         
         //Add ability modifier.
+        totalCheckResult += character.getModifiedAbilityModifier(check);
         System.out.println("Ability Modifier: " + character.getModifiedAbilityModifier(check));
         
         //Add any modifiers to ability checks.

@@ -16,11 +16,11 @@ public class CommandAttack extends CommandAbstract {
     
     private String attackName;
     private int attackModifier;
-    private Modifier damageModifier;
+    private int damageModifier;
     private CommandReceiver myReceiver;
     
     
-    public CommandAttack(String attackName, int attackModifier, Modifier damageModifier, 
+    public CommandAttack(String attackName, int attackModifier, int damageModifier, 
             CommandReceiver receiver)
     {
         this.myReceiver = receiver;
