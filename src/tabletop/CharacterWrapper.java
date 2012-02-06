@@ -27,6 +27,8 @@ public class CharacterWrapper {
     {
         this.character = character;
         this.weightLoad = 0;
+        this.maxHP = 0;
+        this.currentHP = 0;
         this.modifierList = new ModifierList();
         this.equipment = new EquipmentList();
     }
